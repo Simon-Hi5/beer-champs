@@ -3,7 +3,7 @@ package at.ac.uibk.beerchamps.persistence;
 import javax.persistence.Entity;
 import java.util.Set;
 
-@Entity
+
 public class Team {
 
     private Set<Player> players;
