@@ -1,12 +1,17 @@
 package at.ac.uibk.beerchamps.service;
 
-import at.ac.uibk.beerchamps.persistence.Round;
-import at.ac.uibk.beerchamps.persistence.Team;
+import at.ac.uibk.beerchamps.persistence.Tournament;
+import at.ac.uibk.beerchamps.repository.TournamentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import java.util.Set;
+@Component
+public class TournamentService {
 
-public interface TournamentService {
+    @Autowired
+    private TournamentRepository repository;
 
-    Set<Round> createRounds(Set<Team> teams);
-
+    public Tournament createTournament(Tournament tournament){
+        return(repository.save(tournament));
+    }
 }
