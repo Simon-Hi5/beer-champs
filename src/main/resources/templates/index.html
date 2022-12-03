@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<head th:replace="fragments/head :: html_head"/>
 <body>
-<h1>MVP</h1>
+
+<nav th:replace="fragments/nav :: nav"/>
+
+<div class="container">
+    <div style="text-align: center; background-color: #f2f2f2; margin-top: 20px; border-radius: 10px; padding: 20px 10px;">
+        <h1>Welcome to BeerChamps!</h1>
+        <h2>Your BeerPong Tournament Manager.</h2>
+    </div>
+
+    <a type="button" class="btn btn-primary btn-lg" href="/create"
+       style="margin: auto; max-width: 400px; display: block; margin-top: 20px;">Create a new Tournament!</a>
+</div>
 </body>
 </html>
