@@ -6,25 +6,25 @@
 <nav th:replace="fragments/nav :: nav"/>
 
 <div class="container">
-    <div class="headline">
+    <div class="headline mt-4 text-center">
         <h1>Create a new Tournament</h1>
     </div>
 
     <form id="create-tournament" method="POST" th:action="@{/create-tournament}" th:object="${newTournament}">
         <div class="form-group">
             <label for="tournamentName">Tournament Name</label>
-            <input type="text" class="form-control" id="tournamentName" th:field="*{tournamentName}">
+            <input type="text" class="form-control" id="tournamentName" th:field="*{tournamentName}" th:required="required">
         </div>
         <div class="form-group">
             <label for="tournamentType">Tournament Type</label>
-            <select class="form-control" id="tournamentType" th:field="*{tournamentType}">
+            <select class="form-control" id="tournamentType" th:field="*{tournamentType}" th:required="required">
                 <option th:each="tournType : ${T(at.ac.uibk.beerchamps.persistence.TournamentType).values()}"
                         th:value="${tournType}" th:text="${tournType.label}"></option>
             </select>
         </div>
         <div class="form-group">
             <label for="hostName">Host Name</label>
-            <input type="text" class="form-control" id="hostName" th:field="*{hostName}">
+            <input type="text" class="form-control" id="hostName" th:field="*{hostName}" th:required="required">
         </div>
         <div class="text-center">
             <button type="submit" class="btn btn-primary ">Create Tournament</button>
