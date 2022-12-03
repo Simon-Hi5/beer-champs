@@ -1,6 +1,7 @@
 package at.ac.uibk.beerchamps.persistence;
 
 import at.ac.uibk.beerchamps.repository.TournamentRepository;
+import com.sun.istack.NotNull;
 import org.springframework.data.domain.Persistable;
 
 import javax.persistence.*;
@@ -15,8 +16,12 @@ public class Tournament implements Persistable<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private String hostName;
+
+    @NotNull
     private String tournamentName;
+    @NotNull
+    private String hostName;
+    @NotNull
     private TournamentType tournamentType;
 
     @OneToMany
