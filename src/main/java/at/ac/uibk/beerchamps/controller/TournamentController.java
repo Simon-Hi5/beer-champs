@@ -17,18 +17,18 @@ public class TournamentController {
 
     public TournamentController() {}
 
-    @GetMapping("/create")
+    @GetMapping("/create-tournament")
     public String getCreateTournamentView(Model model) {
         model.addAttribute("newTournament", new Tournament());
-        return "create-tournament";
+        return "create-tournament-view";
     }
 
-    @PostMapping("/create")
+    @PostMapping("/create-tournament")
     public String handleTournamentCreation(@ModelAttribute Tournament tournament){
         Tournament newTournament = tournamentService.createTournament(tournament);
         if(newTournament != null)
-            return "create-teams";
+            return "redirect:/create-teams";
         else
-            return "create-tournament?error";
+            return "redirect:/create-tournament?error";
     }
 }

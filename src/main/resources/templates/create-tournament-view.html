@@ -10,7 +10,7 @@
         <h1>Create a new Tournament</h1>
     </div>
 
-    <form id="create-tournament" method="POST" th:action="@{/create}" th:object="${newTournament}">
+    <form id="create-tournament" method="POST" th:action="@{/create-tournament}" th:object="${newTournament}">
         <div class="form-group">
             <label for="tournamentName">Tournament Name</label>
             <input type="text" class="form-control" id="tournamentName" th:field="*{tournamentName}">
