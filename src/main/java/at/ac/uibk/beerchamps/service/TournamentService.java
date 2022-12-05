@@ -5,13 +5,25 @@ import at.ac.uibk.beerchamps.repository.TournamentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class TournamentService {
 
     @Autowired
-    private TournamentRepository repository;
+    private TournamentRepository tournamentRepository;
 
     public Tournament createTournament(Tournament tournament){
-        return(repository.save(tournament));
+        tournamentRepository.save(tournament);
+        return(tournament);
+    }
+    public Tournament editTournament(Tournament tournament){
+        tournamentRepository.save(tournament);
+        return(tournament);
+    }
+
+    public List<Tournament> getCurrentTournaments(){
+        List<Tournament> tournaments = tournamentRepository.findAll();
+        return(tournaments);
     }
 }

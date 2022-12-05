@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class TournamentController {
+public class AddTournamentController {
 
     @Autowired
     TournamentService tournamentService;
 
-    public TournamentController() {}
+    public AddTournamentController() {}
 
     @GetMapping("/create-tournament")
     public String getCreateTournamentView(Model model) {
@@ -27,7 +27,7 @@ public class TournamentController {
     public String handleTournamentCreation(@ModelAttribute Tournament tournament){
         Tournament newTournament = tournamentService.createTournament(tournament);
         if(newTournament != null)
-            return "redirect:/create-teams";
+            return "redirect:/";
         else
             return "redirect:/create-tournament?error";
     }

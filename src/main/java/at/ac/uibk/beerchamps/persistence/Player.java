@@ -1,7 +1,6 @@
 package at.ac.uibk.beerchamps.persistence;
 
 import org.springframework.data.domain.Persistable;
-
 import javax.persistence.*;
 
 @Entity
@@ -17,7 +16,6 @@ public class Player implements Persistable<Long> {
         this.name = name;
     }
     public Player() {}
-
 
     @Override
     @Transient

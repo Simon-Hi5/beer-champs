@@ -6,13 +6,44 @@
 <nav th:replace="fragments/nav :: nav"/>
 
 <div class="container">
-    <div style="text-align: center; background-color: #f2f2f2; margin-top: 20px; border-radius: 10px; padding: 20px 10px;">
+    <div class="text-center" style="background-color: #f2f2f2; margin-top: 20px; border-radius: 10px; padding: 20px 10px;">
         <h1>Welcome to BeerChamps!</h1>
         <h2>Your BeerPong Tournament Manager.</h2>
     </div>
 
     <a type="button" class="btn btn-primary btn-lg" href="/create-tournament"
        style="margin: auto; max-width: 400px; display: block; margin-top: 20px;">Create a new Tournament!</a>
+
+    <div>
+        <h3 class="mt-4"> Ongoing Tournaments </h3>
+        <table  class="table table-striped">
+            <thead>
+                <tr th:if="${!currentTournaments.empty}">
+                    <th> ID </th>
+                    <th> Tournament Name </th>
+                    <th> Host Name </th>
+                    <th> Tournament Type </th>
+                    <th> Edit Tournament </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${currentTournaments.empty}">
+                    <td  class="align-middle" colspan="3"> No Tournaments Available </td>
+                </tr>
+                <tr th:each="tourn : ${currentTournaments}">
+                    <td class="align-middle"><span th:text="${tourn.id}"> ID </span></td>
+                    <td class="align-middle"><span th:text="${tourn.tournamentName}"> Tournament Name </span></td>
+                    <td class="align-middle"><span th:text="${tourn.hostName}"> Host Name </span></td>
+                    <td class="align-middle"><span th:text="${tourn.tournamentType}"> Tournament Type </span></td>
+                    <td class="align-middle">
+                        <form action="#" th:action="@{/edit-tournament/} + ${tourn.id}" method="GET">
+                            <button type="submit" class="btn btn-secondary edit"><i class="fas fa-edit"></i> Edit</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>

@@ -12,16 +12,17 @@ public class Team implements Persistable<Long> {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToMany
-    private Set<Player> players;
     private String teamName;
 
+    @OneToMany
+    private Set<Player> players;
+
+    public Team() {}
     public Team(Set<Player> players, String teamName) {
         this.players = players;
         this.teamName = teamName;
     }
 
-    public Team() {}
 
     @OneToMany
     public Set<Player> getPlayers() {
