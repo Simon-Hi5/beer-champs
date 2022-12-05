@@ -21,7 +21,10 @@ public class TournamentService {
         tournamentRepository.save(tournament);
         return(tournament);
     }
-
+    public Tournament removeTournament(Tournament tournament){
+        tournamentRepository.delete(tournament);
+        return(tournament);
+    }
     public List<Tournament> getCurrentTournaments(){
         List<Tournament> tournaments = tournamentRepository.findAll();
         return(tournaments);

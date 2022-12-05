@@ -40,4 +40,12 @@ public class EditTournamentController {
         Tournament newTournament = tournamentService.editTournament(tournament);
         return "redirect:/edit-tournament/" + tournament.getId() + "?success";
     }
+    @GetMapping("/remove-tournament/{id}")
+    public String getEditTournamentView(@PathVariable("id") Long id) {
+        if(!tournamentRepository.existsById(id))
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Entity not found");
+        Optional<Tournament> tournament = tournamentRepository.findById(id);
+        tournamentService.removeTournament(tournament.get());
+        return "redirect:/";
+    }
 }
