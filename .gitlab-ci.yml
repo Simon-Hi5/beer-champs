@@ -1,11 +1,23 @@
 stages:
   - test
+  - code-analysis
   - build
+
+variables:
+  SONAR_TOKEN: "c53d82b2754b547671fb8b473e1400ff63224084"
 
 maven-test:
   image: maven:3-jdk-11
   stage: test
   script: "mvn test -B"
+
+sonar-qube:
+  image: maven:3-jdk-11
+  stage: test
+  script: "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=BeerChamps"
+  only:
+    - merge_requests
+    - master
 
 maven-build:
   image: maven:3-jdk-11
@@ -14,3 +26,6 @@ maven-build:
   artifacts:
     paths:
       - target/beerchamps-1.0.0.jar
+  only:
+    - merge_requests
+    - master
