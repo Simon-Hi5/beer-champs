@@ -22,7 +22,9 @@ public class Game implements Persistable<Long> {
         this.team1 = team1;
         this.team2 = team2;
     }
-    public Game() {}
+
+    public Game() {
+    }
 
     @Override
     public Long getId() {
@@ -32,6 +34,7 @@ public class Game implements Persistable<Long> {
     public void setId(long id) {
         this.id = id;
     }
+
     @OneToOne
     public Team getTeam1() {
         return team1;
@@ -40,6 +43,7 @@ public class Game implements Persistable<Long> {
     public void setTeam1(Team team1) {
         this.team1 = team1;
     }
+
     @OneToOne
     public Team getTeam2() {
         return team2;
@@ -48,6 +52,7 @@ public class Game implements Persistable<Long> {
     public void setTeam2(Team team2) {
         this.team2 = team2;
     }
+
     @OneToOne
     public Team getWinner() {
         return winner;

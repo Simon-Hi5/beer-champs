@@ -15,7 +15,8 @@ public class AddTournamentController {
     @Autowired
     TournamentService tournamentService;
 
-    public AddTournamentController() {}
+    public AddTournamentController() {
+    }
 
     @GetMapping("/create-tournament")
     public String getCreateTournamentView(Model model) {
@@ -24,11 +25,12 @@ public class AddTournamentController {
     }
 
     @PostMapping("/create-tournament")
-    public String handleTournamentCreation(@ModelAttribute Tournament tournament){
+    public String handleTournamentCreation(@ModelAttribute Tournament tournament) {
         Tournament newTournament = tournamentService.createTournament(tournament);
-        if(newTournament != null)
+        if (newTournament != null) {
             return "redirect:/";
-        else
+        } else {
             return "redirect:/create-tournament?error";
+        }
     }
 }

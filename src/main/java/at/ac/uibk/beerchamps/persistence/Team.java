@@ -17,7 +17,9 @@ public class Team implements Persistable<Long> {
     @OneToMany
     private Set<Player> players;
 
-    public Team() {}
+    public Team() {
+    }
+
     public Team(Set<Player> players, String teamName) {
         this.players = players;
         this.teamName = teamName;

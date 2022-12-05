@@ -26,9 +26,10 @@ public class EditTournamentController {
 
     public EditTournamentController() {
     }
+
     @GetMapping("/edit-tournament/{id}")
     public String getEditTournamentView(@PathVariable("id") Long id, Model model) {
-        if(!tournamentRepository.existsById(id))
+        if (!tournamentRepository.existsById(id))
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Entity not found");
         Optional<Tournament> tournament = tournamentRepository.findById(id);
         model.addAttribute("tourn", tournament.get());
@@ -36,13 +37,14 @@ public class EditTournamentController {
     }
 
     @PostMapping("/edit-tournament/{id}")
-    public String handleTournamentCreation(@ModelAttribute Tournament tournament){
+    public String handleTournamentCreation(@ModelAttribute Tournament tournament) {
         Tournament newTournament = tournamentService.editTournament(tournament);
         return "redirect:/edit-tournament/" + tournament.getId() + "?success";
     }
+
     @GetMapping("/remove-tournament/{id}")
     public String getEditTournamentView(@PathVariable("id") Long id) {
-        if(!tournamentRepository.existsById(id))
+        if (!tournamentRepository.existsById(id))
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Entity not found");
         Optional<Tournament> tournament = tournamentRepository.findById(id);
         tournamentService.removeTournament(tournament.get());
