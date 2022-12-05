@@ -1,6 +1,5 @@
 package at.ac.uibk.beerchamps.persistence;
 
-import at.ac.uibk.beerchamps.repository.TournamentRepository;
 import com.sun.istack.NotNull;
 import org.springframework.data.domain.Persistable;
 
@@ -15,7 +14,7 @@ public class Tournament implements Persistable<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id", nullable = false)
+    @Column(name = "id", nullable = false)
     private long id;
 
     @NotNull

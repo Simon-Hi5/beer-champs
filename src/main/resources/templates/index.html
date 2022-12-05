@@ -6,7 +6,8 @@
 <nav th:replace="fragments/nav :: nav"/>
 
 <div class="container">
-    <div class="text-center" style="background-color: #f2f2f2; margin-top: 20px; border-radius: 10px; padding: 20px 10px;">
+    <div class="text-center"
+         style="background-color: #f2f2f2; margin-top: 20px; border-radius: 10px; padding: 20px 10px;">
         <h1>Welcome to BeerChamps!</h1>
         <h2>Your BeerPong Tournament Manager.</h2>
     </div>
@@ -18,34 +19,36 @@
         <h3 class="mt-4"> Ongoing Tournaments </h3>
         <table class="table table-striped">
             <thead>
-                <tr th:if="${!currentTournaments.empty}">
-                    <th> ID </th>
-                    <th> Tournament Name </th>
-                    <th> Host Name </th>
-                    <th> Tournament Type </th>
-                    <th> Edit Tournament </th>
-                </tr>
+            <tr th:if="${!currentTournaments.empty}">
+                <th> ID</th>
+                <th> Tournament Name</th>
+                <th> Host Name</th>
+                <th> Tournament Type</th>
+                <th> Edit Tournament</th>
+            </tr>
             </thead>
             <tbody>
-                <tr th:if="${currentTournaments.empty}">
-                    <td  class="align-middle" colspan="3"> No Tournaments Available </td>
-                </tr>
-                <tr th:each="tourn : ${currentTournaments}">
-                    <td class="align-middle"><span th:text="${tourn.id}"> ID </span></td>
-                    <td class="align-middle"><span th:text="${tourn.tournamentName}"> Tournament Name </span></td>
-                    <td class="align-middle"><span th:text="${tourn.hostName}"> Host Name </span></td>
-                    <td class="align-middle"><span th:text="${tourn.tournamentType.label}"> Tournament Type </span></td>
-                    <td class="align-middle">
-                        <div class="btn-toolbar" role="group" aria-label="Basic example">
-                            <form action="#" th:action="@{/edit-tournament/} + ${tourn.id}" method="GET">
-                                <button type="submit" class="btn btn-secondary btn-sm" style="margin-right: 4px"><i class="fas fa-edit"></i> Edit</button>
-                            </form>
-                            <form action="#" th:action="@{/remove-tournament/} + ${tourn.id}" method="GET">
-                                <button type="submit" class="btn btn-dark btn-sm"><i class="fas fa-trash"></i> Edit</button>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
+            <tr th:if="${currentTournaments.empty}">
+                <td class="align-middle" colspan="3"> No Tournaments Available</td>
+            </tr>
+            <tr th:each="tourn : ${currentTournaments}">
+                <td class="align-middle"><span th:text="${tourn.id}"> ID </span></td>
+                <td class="align-middle"><span th:text="${tourn.tournamentName}"> Tournament Name </span></td>
+                <td class="align-middle"><span th:text="${tourn.hostName}"> Host Name </span></td>
+                <td class="align-middle"><span th:text="${tourn.tournamentType.label}"> Tournament Type </span></td>
+                <td class="align-middle">
+                    <div class="btn-toolbar" role="group" aria-label="Basic example">
+                        <form action="#" th:action="@{/edit-tournament/} + ${tourn.id}" method="GET">
+                            <button type="submit" class="btn btn-secondary btn-sm" style="margin-right: 4px"><i
+                                    class="fas fa-edit"></i> Edit
+                            </button>
+                        </form>
+                        <form action="#" th:action="@{/remove-tournament/} + ${tourn.id}" method="GET">
+                            <button type="submit" class="btn btn-dark btn-sm"><i class="fas fa-trash"></i> Edit</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>

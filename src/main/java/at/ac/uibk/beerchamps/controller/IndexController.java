@@ -1,7 +1,6 @@
 package at.ac.uibk.beerchamps.controller;
 
 import at.ac.uibk.beerchamps.persistence.Tournament;
-import at.ac.uibk.beerchamps.repository.TournamentRepository;
 import at.ac.uibk.beerchamps.service.TournamentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +15,8 @@ public class IndexController {
     @Autowired
     TournamentService tournamentService;
 
-    public IndexController() {}
+    public IndexController() {
+    }
 
     @GetMapping("/")
     public String getIndexView(Model m) {
