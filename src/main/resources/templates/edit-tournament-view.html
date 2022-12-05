@@ -28,6 +28,26 @@
             <label for="hostName">Host Name</label>
             <input type="text" class="form-control" id="hostName" th:field="*{hostName}" th:required="required">
         </div>
+        <table class="mt-4 table table-striped">
+            <thead>
+                <tr>
+                    <th> Team ID</th>
+                    <th> Team Name</th>
+                    <th> Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${tourn.teams.empty}">
+                    <td class="align-middle text-center" colspan="3"> No Teams Defined </td>
+                </tr>
+                <tr th:each="team : ${tourn.teams}">
+                    <td class="align-middle"><span th:text="${team.id}"> ID </span></td>
+                    <td class="align-middle"><span th:text="${team.teamName}"> Tournament Name </span></td>
+                    <td class="align-middle">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <div class="text-center">
             <button type="submit" class="btn btn-primary ">Save Changes</button>
         </div>

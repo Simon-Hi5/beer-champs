@@ -16,7 +16,7 @@
 
     <div>
         <h3 class="mt-4"> Ongoing Tournaments </h3>
-        <table  class="table table-striped">
+        <table class="table table-striped">
             <thead>
                 <tr th:if="${!currentTournaments.empty}">
                     <th> ID </th>
@@ -34,7 +34,7 @@
                     <td class="align-middle"><span th:text="${tourn.id}"> ID </span></td>
                     <td class="align-middle"><span th:text="${tourn.tournamentName}"> Tournament Name </span></td>
                     <td class="align-middle"><span th:text="${tourn.hostName}"> Host Name </span></td>
-                    <td class="align-middle"><span th:text="${tourn.tournamentType}"> Tournament Type </span></td>
+                    <td class="align-middle"><span th:text="${tourn.tournamentType.label}"> Tournament Type </span></td>
                     <td class="align-middle">
                         <form action="#" th:action="@{/edit-tournament/} + ${tourn.id}" method="GET">
                             <button type="submit" class="btn btn-secondary edit"><i class="fas fa-edit"></i> Edit</button>
