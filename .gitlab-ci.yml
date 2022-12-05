@@ -1,13 +1,31 @@
-# You can override the included template(s) by including variable overrides
-# SAST customization: https://docs.gitlab.com/ee/user/application_security/sast/#customizing-the-sast-settings
-# Secret Detection customization: https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
-# Dependency Scanning customization: https://docs.gitlab.com/ee/user/application_security/dependency_scanning/#customizing-the-dependency-scanning-settings
-# Container Scanning customization: https://docs.gitlab.com/ee/user/application_security/container_scanning/#customizing-the-container-scanning-settings
-# Note that environment variables can be set in several places
-# See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
 stages:
-- test
-sast:
+  - test
+  - code-analysis
+  - build
+
+variables:
+  SONAR_TOKEN: "c53d82b2754b547671fb8b473e1400ff63224084"
+
+maven-test:
+  image: maven:3-jdk-11
   stage: test
-include:
-- template: Security/SAST.gitlab-ci.yml
+  script: "mvn test -B"
+
+sonar-qube:
+  image: maven:3-jdk-11
+  stage: code-analysis
+  script: "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=BeerChamps"
+  only:
+    - merge_requests
+    - master
+
+maven-build:
+  image: maven:3-jdk-11
+  stage: build
+  script: "mvn package -B -Dmaven.test.skip"
+  artifacts:
+    paths:
+      - target/beerchamps-1.0.0.jar
+  only:
+    - merge_requests
+    - master

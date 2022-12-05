@@ -10,11 +10,13 @@
 	</parent>
 	<groupId>at.ac.uibk</groupId>
 	<artifactId>beerchamps</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>beerchamps</name>
 	<description>BeerChamps - Beerpong Tournament Management App</description>
 	<properties>
 		<java.version>11</java.version>
+		<sonar.organization>beerchamps</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 	<dependencies>
 		<dependency>
