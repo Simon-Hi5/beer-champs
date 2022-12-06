@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
-<head th:replace="fragments/head :: html_head"/>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: html_head"></head>
 <body>
 
-<nav th:replace="fragments/nav :: nav"/>
+<nav th:replace="fragments/nav :: nav"></nav>
 
 <div class="container">
     <div class="text-center"
@@ -20,11 +20,11 @@
         <table class="table table-striped">
             <thead>
             <tr th:if="${!currentTournaments.empty}">
-                <th> ID</th>
-                <th> Tournament Name</th>
-                <th> Host Name</th>
-                <th> Tournament Type</th>
-                <th> Edit Tournament</th>
+                <th>ID</th>
+                <th>Tournament Name</th>
+                <th>Host Name</th>
+                <th>Tournament Type</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -39,12 +39,12 @@
                 <td class="align-middle">
                     <div class="btn-toolbar" role="group" aria-label="Basic example">
                         <form action="#" th:action="@{/edit-tournament/} + ${tourn.id}" method="GET">
-                            <button type="submit" class="btn btn-secondary btn-sm" style="margin-right: 4px"><i
+                            <button type="submit" class="btn btn-dark btn-sm" style="margin-right: 4px"><i
                                     class="fas fa-edit"></i> Edit
                             </button>
                         </form>
                         <form action="#" th:action="@{/remove-tournament/} + ${tourn.id}" method="GET">
-                            <button type="submit" class="btn btn-dark btn-sm"><i class="fas fa-trash"></i> Edit</button>
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Remove</button>
                         </form>
                     </div>
                 </td>
