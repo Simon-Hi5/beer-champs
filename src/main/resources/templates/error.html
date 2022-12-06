@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: html_head"></head>
+<body>
+
+<nav th:replace="fragments/nav :: nav"></nav>
+
+<div class="container">
+    <div class="text-center"
+         style="background-color: #f2f2f2; margin-top: 20px; border-radius: 10px; padding: 20px 10px;">
+        <h4 th:text="'Error ' + ${status} + ': ' +${error}"/>
+        <h5> An error has occurred! Sorry, the requested page could not be loaded.</h5>
+        <table class="table table-striped">
+            <tr>
+                <td>Date</td>
+                <td th:text="${timestamp}"/>
+            </tr>
+            <tr>
+                <td>Path</td>
+                <td th:text="${path}"/>
+            </tr>
+            <tr>
+                <td>Message</td>
+                <td th:text="${message}"/>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

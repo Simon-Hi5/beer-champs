@@ -17,12 +17,25 @@ public class Team implements Persistable<Long> {
     @OneToMany
     private Set<Player> players;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tournament_id")
+    private Tournament tournament;
+
+    public Tournament getTournament() {
+        return tournament;
+    }
+
+    public void setTournament(Tournament tournament) {
+        this.tournament = tournament;
+    }
+
     public Team() {
     }
 
-    public Team(Set<Player> players, String teamName) {
+    public Team(Set<Player> players, String teamName, Tournament tournament) {
         this.players = players;
         this.teamName = teamName;
+        this.tournament = tournament;
     }
 
 

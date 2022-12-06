@@ -4,6 +4,7 @@ import com.sun.istack.NotNull;
 import org.springframework.data.domain.Persistable;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -24,7 +25,7 @@ public class Tournament implements Persistable<Long> {
     @NotNull
     private TournamentType tournamentType;
 
-    @OneToMany
+    @OneToMany(mappedBy="tournament", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Team> teams;
 
     @OneToMany
