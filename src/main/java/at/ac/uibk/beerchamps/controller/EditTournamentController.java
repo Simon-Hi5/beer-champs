@@ -39,7 +39,7 @@ public class EditTournamentController {
     @PostMapping("/edit-tournament/{id}")
     public String handleTournamentCreation(@ModelAttribute Tournament tournament) {
         Tournament newTournament = tournamentService.editTournament(tournament);
-        return "redirect:/edit-tournament/" + tournament.getId() + "?success";
+        return "redirect:/";
     }
 
     @GetMapping("/remove-tournament/{id}")

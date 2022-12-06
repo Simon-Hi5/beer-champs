@@ -26,11 +26,7 @@ public class AddTournamentController {
 
     @PostMapping("/create-tournament")
     public String handleTournamentCreation(@ModelAttribute Tournament tournament) {
-        Tournament newTournament = tournamentService.createTournament(tournament);
-        if (newTournament != null) {
-            return "redirect:/";
-        } else {
-            return "redirect:/create-tournament?error";
-        }
+        tournamentService.createTournament(tournament);
+        return "redirect:/";
     }
 }
