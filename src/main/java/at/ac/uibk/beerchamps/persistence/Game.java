@@ -1,11 +1,10 @@
 package at.ac.uibk.beerchamps.persistence;
 
-import org.springframework.data.domain.Persistable;
-
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
-public class Game implements Persistable<Long> {
+public class Game {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,16 +17,19 @@ public class Game implements Persistable<Long> {
     @OneToOne
     private Team winner;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "round_id")
+    private Round round;
+
+    public Game() {
+    }
+
     public Game(Team team1, Team team2) {
         this.team1 = team1;
         this.team2 = team2;
     }
 
-    public Game() {
-    }
-
-    @Override
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
@@ -35,7 +37,6 @@ public class Game implements Persistable<Long> {
         this.id = id;
     }
 
-    @OneToOne
     public Team getTeam1() {
         return team1;
     }
@@ -44,7 +45,6 @@ public class Game implements Persistable<Long> {
         this.team1 = team1;
     }
 
-    @OneToOne
     public Team getTeam2() {
         return team2;
     }
@@ -53,7 +53,6 @@ public class Game implements Persistable<Long> {
         this.team2 = team2;
     }
 
-    @OneToOne
     public Team getWinner() {
         return winner;
     }
@@ -62,9 +61,28 @@ public class Game implements Persistable<Long> {
         this.winner = winner;
     }
 
+    public Round getRound() {
+        return round;
+    }
+
+    public void setRound(Round round) {
+        this.round = round;
+    }
+
     @Override
-    @Transient
-    public boolean isNew() {
-        return false;
+    public int hashCode() {
+        return Objects.hash(getId());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof Tournament)) {
+            return false;
+        }
+        final Tournament other = (Tournament) obj;
+        return Objects.equals(getId(), other.getId());
     }
 }

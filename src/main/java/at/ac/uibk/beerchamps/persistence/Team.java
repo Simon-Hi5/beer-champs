@@ -1,12 +1,11 @@
 package at.ac.uibk.beerchamps.persistence;
 
-import org.springframework.data.domain.Persistable;
-
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
-public class Team implements Persistable<Long> {
+public class Team {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,12 +20,16 @@ public class Team implements Persistable<Long> {
     @JoinColumn(name = "tournament_id")
     private Tournament tournament;
 
-    public Tournament getTournament() {
-        return tournament;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "round_id")
+    private Round round;
+
+    public Round getRound() {
+        return round;
     }
 
-    public void setTournament(Tournament tournament) {
-        this.tournament = tournament;
+    public void setRound(Round round) {
+        this.round = round;
     }
 
     public Team() {
@@ -38,14 +41,12 @@ public class Team implements Persistable<Long> {
         this.tournament = tournament;
     }
 
-
-    @OneToMany
-    public Set<Player> getPlayers() {
-        return players;
+    public long getId() {
+        return id;
     }
 
-    public void setPlayers(Set<Player> players) {
-        this.players = players;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getTeamName() {
@@ -56,18 +57,36 @@ public class Team implements Persistable<Long> {
         this.teamName = teamName;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public Set<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(Set<Player> players) {
+        this.players = players;
+    }
+
+    public Tournament getTournament() {
+        return tournament;
+    }
+
+    public void setTournament(Tournament tournament) {
+        this.tournament = tournament;
     }
 
     @Override
-    public Long getId() {
-        return id;
+    public int hashCode() {
+        return Objects.hash(getId());
     }
 
     @Override
-    @Transient
-    public boolean isNew() {
-        return false;
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof Tournament)) {
+            return false;
+        }
+        final Tournament other = (Tournament) obj;
+        return Objects.equals(getId(), other.getId());
     }
 }
