@@ -6,10 +6,12 @@
 <nav th:replace="fragments/nav :: nav"></nav>
 
 <div class="container">
-    <div class="headline mt-4 text-center">
-        <h1>Create a new Team</h1>
+    <div class="text-center"
+         style="background-color: #f2f2f2; margin-top: 20px; border-radius: 10px; padding: 20px 10px;">
+        <h2>Create new Team</h2>
     </div>
-    <form id="create-team" method="POST" th:action="@{/tournament/{id}/create-team(id=${tournID})}" th:object="${newTeam}">
+    <form id="create-team" method="POST" th:action="@{/tournament/{id}/team/create(id=${tournID})}"
+          th:object="${newTeam}">
         <div class="form-group">
             <label for="teamName">Team Name</label>
             <input type="text" class="form-control" id="teamName" th:field="*{teamName}"

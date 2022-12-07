@@ -12,8 +12,8 @@
         <h2>Your BeerPong Tournament Manager.</h2>
     </div>
 
-    <a type="button" class="btn btn-primary btn-lg" href="/create-tournament"
-       style="margin: auto; max-width: 400px; display: block; margin-top: 20px;">Create a new Tournament!</a>
+    <a type="button" class="btn btn-primary btn-lg" href="/tournament/create"
+       style="margin: auto; max-width: 400px; display: block; margin-top: 20px;">Create new Tournament</a>
 
     <div>
         <h3 class="mt-4"> Ongoing Tournaments </h3>
@@ -38,14 +38,14 @@
                 <td class="align-middle"><span th:text="${tourn.tournamentType.getLabel()}"> Tournament Type </span></td>
                 <td class="align-middle">
                     <div class="btn-toolbar" role="group" aria-label="Basic example">
-                        <form action="#" th:action="@{/tournament/{id}(id=${tourn.id})}" method="GET">
-                            <button type="submit" class="btn btn-dark btn-sm" style="margin-right: 4px"><i
-                                    class="fas fa-edit"></i> Edit
-                            </button>
-                        </form>
-                        <form action="#" th:action="@{/tournament/{id}/delete(id=${tourn.id})}" method="GET">
-                            <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>Delete</button>
-                        </form>
+                        <a type="button" class="btn btn-dark btn-sm"
+                           th:href="@{/tournament/{id}(id=${tourn.id})}">
+                            <i class="fas fa-edit"></i>Edit
+                        </a>
+                        <a type="button" class="btn btn-danger btn-sm"
+                           th:href="@{/tournament/{id}/delete(id=${tourn.id})}">
+                            <i class="fas fa-trash"></i>Delete
+                        </a>
                     </div>
                 </td>
             </tr>

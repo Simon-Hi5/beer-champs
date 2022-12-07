@@ -38,4 +38,16 @@ public class TournamentController {
         tournamentService.deleteTournament(id);
         return "redirect:/";
     }
+
+    @GetMapping("/tournament/create")
+    public String getCreateTournamentView(Model model) {
+        model.addAttribute("newTournament", new Tournament());
+        return "create-tournament-view";
+    }
+
+    @PostMapping("/tournament/create")
+    public String handleTournamentCreation(@ModelAttribute Tournament tournament) {
+        tournamentService.createTournament(tournament);
+        return "redirect:/";
+    }
 }
