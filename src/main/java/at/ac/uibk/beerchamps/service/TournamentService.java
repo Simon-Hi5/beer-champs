@@ -5,11 +5,13 @@ import at.ac.uibk.beerchamps.persistence.Tournament;
 import java.util.List;
 
 public interface TournamentService {
-    Tournament createTournament(Tournament tournament);
+    long createTournament(Tournament tournament);
 
-    Tournament editTournament(Tournament tournament);
+    long updateTournament(long id, Tournament tournament);
 
-    Tournament removeTournament(Tournament tournament);
+    long deleteTournament(long tournamentId);
 
-    List<Tournament> getCurrentTournaments();
+    Tournament findTournament(long tournamentId);
+
+    List<Tournament> findAllTournaments();
 }

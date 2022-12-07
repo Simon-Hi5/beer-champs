@@ -5,7 +5,9 @@ import at.ac.uibk.beerchamps.repository.TournamentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class TournamentServiceImpl implements TournamentService {
@@ -13,23 +15,32 @@ public class TournamentServiceImpl implements TournamentService {
     @Autowired
     private TournamentRepository tournamentRepository;
 
-    public Tournament createTournament(Tournament tournament) {
+    public long createTournament(Tournament tournament) {
         tournamentRepository.save(tournament);
-        return (tournament);
+        return tournament.getId();
     }
 
-    public Tournament editTournament(Tournament tournament) {
-        tournamentRepository.save(tournament);
-        return (tournament);
+    public long updateTournament(long tournamentId, Tournament newTournament) {
+        findTournament(tournamentId);
+        tournamentRepository.save(newTournament);
+        return tournamentId;
     }
 
-    public Tournament removeTournament(Tournament tournament) {
+    public long deleteTournament(long tournamentId) {
+        Tournament tournament = findTournament(tournamentId);
         tournamentRepository.delete(tournament);
-        return (tournament);
+        return tournamentId;
     }
 
-    public List<Tournament> getCurrentTournaments() {
-        List<Tournament> tournaments = tournamentRepository.findAll();
-        return (tournaments);
+    public Tournament findTournament(long tournamentId) {
+        Optional<Tournament> tournament = tournamentRepository.findById(tournamentId);
+        if (tournament.isEmpty()) {
+            throw new EntityNotFoundException("Tournament with ID=" + tournamentId + " not found.");
+        }
+        return tournament.get();
+    }
+
+    public List<Tournament> findAllTournaments() {
+        return tournamentRepository.findAll();
     }
 }

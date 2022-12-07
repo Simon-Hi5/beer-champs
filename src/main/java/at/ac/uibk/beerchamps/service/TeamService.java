@@ -1,14 +1,18 @@
 package at.ac.uibk.beerchamps.service;
 
 import at.ac.uibk.beerchamps.persistence.Team;
+import at.ac.uibk.beerchamps.persistence.Tournament;
 
-import java.util.Set;
+import java.util.List;
 
 public interface TeamService {
+    long createTeam(Team team, long tournamentId);
 
-    public Team createTeam(Team team, Long tournamentID);
+    long updateTeam(long id, Team team);
 
-    public Team removeTeam(Team team, Long tournamentID);
+    long deleteTeam(long teamId);
 
-    public Set<Team> getCurrentTeams(Long tournamentID);
+    Team findTeam(long teamId);
+
+    List<Team> findAllTeamsForTournament(long tournamentId);
 }

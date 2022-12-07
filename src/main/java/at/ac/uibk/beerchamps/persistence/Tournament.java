@@ -1,21 +1,16 @@
 package at.ac.uibk.beerchamps.persistence;
 
 import com.sun.istack.NotNull;
-import org.springframework.data.domain.Persistable;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
-public class Tournament implements Persistable<Long> {
-
-    private static final long serialVersionUID = 1L;
+public class Tournament {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
     private long id;
 
     @NotNull
@@ -28,39 +23,24 @@ public class Tournament implements Persistable<Long> {
     @OneToMany(mappedBy="tournament", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Team> teams;
 
-    @OneToMany
+    @OneToMany(mappedBy="tournament", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Round> rounds;
 
     public Tournament() {
     }
 
-    public Tournament(String hostName, String tournamentName, TournamentType tournamentType, int amountTables) {
+    public Tournament(String hostName, String tournamentName, TournamentType tournamentType) {
         this.hostName = hostName;
         this.tournamentName = tournamentName;
         this.tournamentType = tournamentType;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    @Override
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    @Override
-    @Transient
-    public boolean isNew() {
-        return false;
-    }
-
-    public String getHostName() {
-        return hostName;
-    }
-
-    public void setHostName(String hostName) {
-        this.hostName = hostName;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getTournamentName() {
@@ -71,6 +51,14 @@ public class Tournament implements Persistable<Long> {
         this.tournamentName = tournamentName;
     }
 
+    public String getHostName() {
+        return hostName;
+    }
+
+    public void setHostName(String hostName) {
+        this.hostName = hostName;
+    }
+
     public TournamentType getTournamentType() {
         return tournamentType;
     }
@@ -79,7 +67,6 @@ public class Tournament implements Persistable<Long> {
         this.tournamentType = tournamentType;
     }
 
-    @OneToMany
     public Set<Team> getTeams() {
         return teams;
     }
@@ -88,7 +75,6 @@ public class Tournament implements Persistable<Long> {
         this.teams = teams;
     }
 
-    @OneToMany
     public Set<Round> getRounds() {
         return rounds;
     }
@@ -97,19 +83,9 @@ public class Tournament implements Persistable<Long> {
         this.rounds = rounds;
     }
 
-    public void addRound(Round round) {
-        this.rounds.add(round);
-    }
-
-    public void addTeam(Team team) {
-        this.teams.add(team);
-    }
-
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 59 * hash + Objects.hashCode(this.id);
-        return hash;
+        return Objects.hash(getId());
     }
 
     @Override
@@ -121,10 +97,6 @@ public class Tournament implements Persistable<Long> {
             return false;
         }
         final Tournament other = (Tournament) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(getId(), other.getId());
     }
-
 }
