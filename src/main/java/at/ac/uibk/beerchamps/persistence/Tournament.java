@@ -1,7 +1,5 @@
 package at.ac.uibk.beerchamps.persistence;
 
-import com.sun.istack.NotNull;
-
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
@@ -13,11 +11,10 @@ public class Tournament {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NotNull
     private String tournamentName;
-    @NotNull
+
     private String hostName;
-    @NotNull
+
     private TournamentType tournamentType;
 
     @OneToMany(mappedBy="tournament", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

@@ -16,9 +16,6 @@ public class TeamController {
     @Autowired
     TeamService teamService;
 
-    public TeamController() {
-    }
-
     @GetMapping("/tournament/{id}/team/create")
     public String getCreateTeamView(Model model, @PathVariable("id") Long tournamentId) {
         model.addAttribute("newTeam", new Team());

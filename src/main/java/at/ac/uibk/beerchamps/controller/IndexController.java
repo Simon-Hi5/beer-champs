@@ -15,9 +15,6 @@ public class IndexController {
     @Autowired
     TournamentService tournamentService;
 
-    public IndexController() {
-    }
-
     @GetMapping("/")
     public String getIndexView(Model m) {
         List<Tournament> currentTournaments = tournamentService.findAllTournaments();
