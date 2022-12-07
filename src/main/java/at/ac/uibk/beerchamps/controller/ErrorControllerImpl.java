@@ -11,7 +11,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 @Controller
-public class ErrorController implements org.springframework.boot.web.servlet.error.ErrorController {
+public class ErrorControllerImpl implements org.springframework.boot.web.servlet.error.ErrorController {
 
     @GetMapping("/error")
     public String handleError(HttpServletRequest request, Model model) {
