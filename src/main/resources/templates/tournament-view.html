@@ -12,7 +12,7 @@
     </div>
     <h2 class="mt-3 text-center"><span th:text="${tourn.tournamentName}"> Tournament Name </span></h2>
 
-    <form id="edit-tournament" method="POST" th:action="@{/edit-tournament/} + ${tourn.id}" th:object="${tourn}">
+    <form id="edit-tournament" method="POST" th:action="@{/tournament/{id}(id=${tourn.id})}" th:object="${tourn}">
         <div class="form-group">
             <label for="tournamentName">Tournament Name</label>
             <input type="text" class="form-control" id="tournamentName" th:field="*{tournamentName}"
@@ -51,7 +51,7 @@
                 </tbody>
             </table>
             <div class="text-left">
-                <a type="button" class="btn btn-dark" th:href="@{/edit-tournament/{id}/create-team(id=${tourn.id})}"
+                <a type="button" class="btn btn-dark" th:href="@{/tournament/{id}/create-team(id=${tourn.id})}"
                    style="margin: auto; max-width: 400px; display: block; margin-top: 20px;">Create a new Team</a>
             </div>
         </div>

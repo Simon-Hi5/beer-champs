@@ -9,7 +9,7 @@
     <div class="headline mt-4 text-center">
         <h1>Create a new Team</h1>
     </div>
-    <form id="create-team" method="POST" th:action="@{/edit-tournament/{id}/create-team(id=${tournID})}" th:object="${newTeam}">
+    <form id="create-team" method="POST" th:action="@{/tournament/{id}/create-team(id=${tournID})}" th:object="${newTeam}">
         <div class="form-group">
             <label for="teamName">Team Name</label>
             <input type="text" class="form-control" id="teamName" th:field="*{teamName}"

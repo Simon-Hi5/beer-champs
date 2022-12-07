@@ -20,7 +20,7 @@ public class IndexController {
 
     @GetMapping("/")
     public String getIndexView(Model m) {
-        List<Tournament> currentTournaments = tournamentService.getCurrentTournaments();
+        List<Tournament> currentTournaments = tournamentService.findAllTournaments();
         m.addAttribute("currentTournaments", currentTournaments);
         return "index";
     }

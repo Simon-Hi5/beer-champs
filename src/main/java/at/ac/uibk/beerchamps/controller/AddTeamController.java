@@ -21,16 +21,16 @@ public class AddTeamController {
     public AddTeamController() {
     }
 
-    @GetMapping("/edit-tournament/{id}/create-team")
+    @GetMapping("/tournament/{id}/create-team")
     public String getCreateTeamView(Model model, @PathVariable("id") Long tournamentId) {
         model.addAttribute("newTeam", new Team());
         model.addAttribute("tournID", tournamentId);
         return "create-team-view";
     }
 
-    @PostMapping("/edit-tournament/{id}/create-team")
+    @PostMapping("/tournament/{id}/create-team")
     public String handleTeamCreation(@ModelAttribute Team team, @PathVariable("id") Long tournamentId) {
         teamService.createTeam(team, tournamentId);
-        return "redirect:/edit-tournament/" + tournamentId;
+        return "redirect:/tournament/" + tournamentId;
     }
 }

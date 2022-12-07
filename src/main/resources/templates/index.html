@@ -38,13 +38,13 @@
                 <td class="align-middle"><span th:text="${tourn.tournamentType.getLabel()}"> Tournament Type </span></td>
                 <td class="align-middle">
                     <div class="btn-toolbar" role="group" aria-label="Basic example">
-                        <form action="#" th:action="@{/edit-tournament/} + ${tourn.id}" method="GET">
+                        <form action="#" th:action="@{/tournament/{id}(id=${tourn.id})}" method="GET">
                             <button type="submit" class="btn btn-dark btn-sm" style="margin-right: 4px"><i
                                     class="fas fa-edit"></i> Edit
                             </button>
                         </form>
-                        <form action="#" th:action="@{/remove-tournament/} + ${tourn.id}" method="GET">
-                            <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Remove</button>
+                        <form action="#" th:action="@{/tournament/{id}/delete(id=${tourn.id})}" method="GET">
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>Delete</button>
                         </form>
                     </div>
                 </td>
