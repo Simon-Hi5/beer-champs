@@ -35,7 +35,7 @@
                 <td class="align-middle"><span th:text="${tourn.id}"> ID </span></td>
                 <td class="align-middle"><span th:text="${tourn.tournamentName}"> Tournament Name </span></td>
                 <td class="align-middle"><span th:text="${tourn.hostName}"> Host Name </span></td>
-                <td class="align-middle"><span th:text="${tourn.tournamentType.label}"> Tournament Type </span></td>
+                <td class="align-middle"><span th:text="${tourn.tournamentType.getLabel()}"> Tournament Type </span></td>
                 <td class="align-middle">
                     <div class="btn-toolbar" role="group" aria-label="Basic example">
                         <form action="#" th:action="@{/edit-tournament/} + ${tourn.id}" method="GET">

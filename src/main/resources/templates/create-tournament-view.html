@@ -20,7 +20,7 @@
             <label for="tournamentType">Tournament Type</label>
             <select class="form-control" id="tournamentType" th:field="*{tournamentType}" th:required="required">
                 <option th:each="tournType : ${T(at.ac.uibk.beerchamps.persistence.TournamentType).values()}"
-                        th:value="${tournType}" th:text="${tournType.label}"></option>
+                        th:value="${tournType}" th:text="${tournType.getLabel()}"></option>
             </select>
         </div>
         <div class="form-group">
