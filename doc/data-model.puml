@@ -1,0 +1,209 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "at.ac.uibk.beerchamps.persistence",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": false,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 7,
+    "backwardDepth": 7,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "BothDirections" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 0,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "at.ac.uibk.beerchamps.persistence.Tournament",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+Game559558283[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Game</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   id: long [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   round: Round [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   team1: Team [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   team2: Team [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   winner: Team [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Player559558283[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Player</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   id: long [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Round559558283[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Round</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   games: Set&lt;Game&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id: long [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   teams: Set&lt;Team&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   tournament: Tournament [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Team559558283[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Team</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   id: long [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   players: Set&lt;Player&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   round: Round [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   teamName: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   tournament: Tournament [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Tournament559558283[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Tournament</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   hostName: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id: long [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   rounds: Set&lt;Round&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   teams: Set&lt;Team&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   tournamentName: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   tournamentType: TournamentType [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+TournamentType559558283[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(E)TournamentType</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   ROUNDROBIN: TournamentType [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   TREESHAPED: TournamentType [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   label: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ valueOf(name: String): TournamentType</TD></TR>
+<TR><TD ALIGN="LEFT" >+ values(): TournamentType[]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#DCFBD5"
+];
+
+'edges    
+Game559558283 -> Round559558283[label="round
+[0..1]"];
+Game559558283 -> Team559558283[label="team1
+[0..1]"];
+Game559558283 -> Team559558283[label="team2
+[0..1]"];
+Game559558283 -> Team559558283[label="winner
+[0..1]"];
+Round559558283 -> Game559558283[label="games
+[0..*]"];
+Round559558283 -> Team559558283[label="teams
+[0..*]"];
+Round559558283 -> Tournament559558283[label="tournament
+[0..1]"];
+Team559558283 -> Player559558283[label="players
+[0..*]"];
+Team559558283 -> Round559558283[label="round
+[0..1]"];
+Team559558283 -> Tournament559558283[label="tournament
+[0..1]"];
+Tournament559558283 -> Round559558283[label="rounds
+[0..*]"];
+Tournament559558283 -> Team559558283[label="teams
+[0..*]"];
+Tournament559558283 -> TournamentType559558283[label="tournamentType
+[0..1]"];
+    
+}
+@enduml
