@@ -24,7 +24,7 @@ public class TournamentController {
     @GetMapping("/tournament/{id}/start")
     public String startTournament(@PathVariable("id") Long id, Model model) {
         Tournament tournament = tournamentService.findTournament(id);
-        tournament = tournamentService.generateGames(tournament);
+        tournamentService.generateGames(tournament);
         return "redirect:/tournament/" + id + "/currentRound";
     }
 

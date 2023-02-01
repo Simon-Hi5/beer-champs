@@ -95,8 +95,9 @@ public class TournamentServiceImpl implements TournamentService {
 
     public void setWinner(Tournament tournament, long gameId, long winnerId) {
         List<Game> games = findTournament(tournament.getId()).getLastRound().getGames();
-        if (teamRepository.findById(winnerId).isPresent()) {
-            Team winner = teamRepository.findById(winnerId).get();
+        Optional<Team> team = teamRepository.findById(winnerId);
+        if (team.isPresent()) {
+            Team winner = team.get();
             for (Game g : games) {
                 if (g.getId() == gameId) {
                     g.setWinner(winner);

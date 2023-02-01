@@ -19,7 +19,7 @@ public interface TournamentService {
 
     Tournament generateGames(Tournament tournament);
 
-    void setWinner(Tournament tournament, long game_id, long winnerId);
+    void setWinner(Tournament tournament, long gameId, long winnerId);
 
     List<Team> generateScoreboard(Round round);
 
