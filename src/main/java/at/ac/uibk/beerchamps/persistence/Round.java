@@ -2,7 +2,7 @@ package at.ac.uibk.beerchamps.persistence;
 
 import javax.persistence.*;
 import java.util.Objects;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 public class Round {
@@ -12,10 +12,10 @@ public class Round {
     private long id;
 
     @OneToMany(mappedBy="round", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Team> teams;
+    private List<Team> teams;
 
     @OneToMany(mappedBy="round", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Game> games;
+    private List<Game> games;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tournament_id")
@@ -24,7 +24,7 @@ public class Round {
     public Round() {
     }
 
-    public Round(Set<Team> teams) {
+    public Round(List<Team> teams) {
         this.teams = teams;
     }
 
@@ -36,19 +36,19 @@ public class Round {
         this.id = id;
     }
 
-    public Set<Team> getTeams() {
+    public List<Team> getTeams() {
         return teams;
     }
 
-    public void setTeams(Set<Team> teams) {
+    public void setTeams(List<Team> teams) {
         this.teams = teams;
     }
 
-    public Set<Game> getGames() {
+    public List<Game> getGames() {
         return games;
     }
 
-    public void setGames(Set<Game> games) {
+    public void setGames(List<Game> games) {
         this.games = games;
     }
 
