@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: html_head"></head>
+<body>
+
+<nav th:replace="fragments/nav :: nav"></nav>
+
+<div class="container">
+    <div class="text-center"
+         style="background-color: #f2f2f2; margin-top: 20px; border-radius: 10px; padding: 20px 10px;">
+        <h2>Winner</h2>
+    </div>
+    <table class="mt-4 table table-striped">
+        <thead>
+        <tr>
+            <th>Rank</th>
+            <th>Team Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="win, index : ${scoreboard}">
+            <td class="align-middle"><span th:text="${index.count}"></span></td>
+            <td class="align-middle"><span th:text="${win.teamName}"></span></td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary ">Back to Tournament Overview</button>
+    </div>
+</div>
+</body>
+</html>
