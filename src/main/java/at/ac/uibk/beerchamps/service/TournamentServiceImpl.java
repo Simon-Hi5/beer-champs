@@ -4,6 +4,9 @@ import at.ac.uibk.beerchamps.persistence.Game;
 import at.ac.uibk.beerchamps.persistence.Round;
 import at.ac.uibk.beerchamps.persistence.Team;
 import at.ac.uibk.beerchamps.persistence.Tournament;
+import at.ac.uibk.beerchamps.repository.GameRepository;
+import at.ac.uibk.beerchamps.repository.RoundRepository;
+import at.ac.uibk.beerchamps.repository.TeamRepository;
 import at.ac.uibk.beerchamps.repository.TournamentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,6 +19,15 @@ public class TournamentServiceImpl implements TournamentService {
 
     @Autowired
     private TournamentRepository tournamentRepository;
+
+    @Autowired
+    private RoundRepository roundRepository;
+
+    @Autowired
+    private GameRepository gameRepository;
+
+    @Autowired
+    private TeamRepository teamRepository;
 
     public long createTournament(Tournament tournament) {
         tournamentRepository.save(tournament);
@@ -49,14 +61,20 @@ public class TournamentServiceImpl implements TournamentService {
     public Tournament generateGames(Tournament tournament) {
         List<Team> teams = tournament.getTeams();
         List<Game> games = new ArrayList<>();
-        for (int i = 0; i < teams.size(); i++) {
-            for (int j = i + 1; j < teams.size(); j++) {
-                games.add(new Game(teams.get(i), teams.get(j)));
-            }
-        }
         Round round = new Round();
         round.setGames(games);
         tournament.addRound(round);
+        round.setTournament(tournament);
+        roundRepository.save(round);
+        for (int i = 0; i < teams.size(); i++) {
+            for (int j = i + 1; j < teams.size(); j++) {
+                Game game = new Game(teams.get(i), teams.get(j));
+                game.setRound(round);
+                games.add(game);
+                gameRepository.save(game);
+            }
+        }
+
         System.out.println(tournament.getRounds().size());
         updateTournament(tournament.getId(), tournament);
         return tournament;
@@ -79,14 +97,16 @@ public class TournamentServiceImpl implements TournamentService {
         return orderedScoreBoard;
     }
 
-    public void setWinner (Tournament tournament, Game game, Team winner) {
-    List<Game> games = findTournament(tournament.getId()).getLastRound().getGames();
-    for (Game g:games) {
-        if(g.getId() == game.getId()){
-            game.setWinner(winner);
+    public void setWinner (Tournament tournament, long game_id, long winnerId) {
+        List<Game> games = findTournament(tournament.getId()).getLastRound().getGames();
+        Team winner = teamRepository.findById(winnerId).get();
+        for (Game g:games) {
+            if(g.getId() == game_id){
+                g.setWinner(winner);
+                gameRepository.save(g);
+            }
         }
-    }
-    tournament.getLastRound().setGames(games);
-    updateTournament(tournament.getId(), tournament);
+        tournament.getLastRound().setGames(games);
+        updateTournament(tournament.getId(), tournament);
     }
 }

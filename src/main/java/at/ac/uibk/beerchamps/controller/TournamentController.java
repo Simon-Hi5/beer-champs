@@ -1,15 +1,14 @@
 package at.ac.uibk.beerchamps.controller;
 
-import at.ac.uibk.beerchamps.persistence.Round;
-import at.ac.uibk.beerchamps.persistence.Tournament;
+import at.ac.uibk.beerchamps.persistence.*;
 import at.ac.uibk.beerchamps.service.TournamentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
 
 @Controller
 public class TournamentController {
@@ -29,7 +28,14 @@ public class TournamentController {
         Tournament tournament = tournamentService.findTournament(id);
         tournament = tournamentService.generateGames(tournament);
         System.out.println(tournament.getRounds().size());
+        return "redirect:/tournament/"+id+"/currentRound";
+    }
+    @GetMapping("/tournament/{id}/currentRound")
+    public String getCurrentRound(@PathVariable("id") Long id, Model model) {
+        Tournament tournament = tournamentService.findTournament(id);
         model.addAttribute("tourn", tournament);
+        System.out.println(tournament.getLastRound());
+        Round asdf = tournament.getLastRound();
         return "tournament-round";
     }
 
@@ -39,9 +45,12 @@ public class TournamentController {
         return "redirect:/";
     }
 
-    @PostMapping("/tournament/{id}/save-round")
-    public String handleRoundSave(@PathVariable("id") Long id, @ModelAttribute Tournament tournament) {
-        return "tournament-round";
+    @PostMapping("/tournament/{id}/game/{game_id}/set-winner")
+    public String handleRoundSave(@PathVariable("id") Long tourn_id, @PathVariable("game_id") Long game_id, @RequestParam("winnerId") Long winnerId, Model model) {
+        Tournament tournament = tournamentService.findTournament(tourn_id);
+        tournamentService.setWinner(tournament, game_id, winnerId);
+        model.addAttribute("tourn", tournament);
+        return "redirect:/tournament/{id}/currentRound";
     }
 
     @GetMapping("/tournament/{id}/delete")
