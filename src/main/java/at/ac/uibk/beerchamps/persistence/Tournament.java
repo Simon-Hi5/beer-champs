@@ -1,8 +1,9 @@
 package at.ac.uibk.beerchamps.persistence;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 public class Tournament {
@@ -18,10 +19,10 @@ public class Tournament {
     private TournamentType tournamentType;
 
     @OneToMany(mappedBy="tournament", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Team> teams;
+    private List<Team> teams;
 
     @OneToMany(mappedBy="tournament", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Round> rounds;
+    private List<Round> rounds;
 
     public Tournament() {
     }
@@ -64,20 +65,28 @@ public class Tournament {
         this.tournamentType = tournamentType;
     }
 
-    public Set<Team> getTeams() {
+    public List<Team> getTeams() {
         return teams;
     }
 
-    public void setTeams(Set<Team> teams) {
+    public void setTeams(List<Team> teams) {
         this.teams = teams;
     }
 
-    public Set<Round> getRounds() {
+    public List<Round> getRounds() {
         return rounds;
     }
 
-    public void setRounds(Set<Round> rounds) {
+    public Round getLastRound(){
+        return this.rounds.get(rounds.size()-1);
+    }
+
+    public void setRounds(List<Round> rounds) {
         this.rounds = rounds;
+    }
+
+    public void addRound(Round round){
+        this.rounds.add(round);
     }
 
     @Override

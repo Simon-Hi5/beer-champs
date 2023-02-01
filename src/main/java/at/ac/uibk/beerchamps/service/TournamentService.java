@@ -1,5 +1,8 @@
 package at.ac.uibk.beerchamps.service;
 
+import at.ac.uibk.beerchamps.persistence.Game;
+import at.ac.uibk.beerchamps.persistence.Round;
+import at.ac.uibk.beerchamps.persistence.Team;
 import at.ac.uibk.beerchamps.persistence.Tournament;
 
 import java.util.List;
@@ -12,6 +15,12 @@ public interface TournamentService {
     long deleteTournament(long tournamentId);
 
     Tournament findTournament(long tournamentId);
+
+    Round generateGames(Tournament tournament);
+
+    void setWinner (Tournament tournament, Game game, Team winner);
+
+    List<Team> generateScoreboard(Round round);
 
     List<Tournament> findAllTournaments();
 }

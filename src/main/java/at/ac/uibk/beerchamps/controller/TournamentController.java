@@ -46,4 +46,10 @@ public class TournamentController {
         tournamentService.createTournament(tournament);
         return "redirect:/";
     }
+
+    @PostMapping("/tournament/start")
+    public String handleTournamentStart(@ModelAttribute Tournament tournament) {
+        tournamentService.generateGames(tournament);
+        return "redirect:/";
+    }
 }
