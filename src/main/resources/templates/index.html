@@ -38,6 +38,10 @@
                 <td class="align-middle"><span th:text="${tourn.tournamentType.getLabel()}"> Tournament Type </span></td>
                 <td class="align-middle">
                     <div class="btn-toolbar" role="group" aria-label="Basic example">
+                        <a type="button" class="btn btn-success btn-sm" th:if="${!tourn.teams.isEmpty()}"
+                           th:href="@{/tournament/{id}/start(id=${tourn.id})}">
+                            <i class="fas fa-edit"></i>Start
+                        </a>
                         <a type="button" class="btn btn-dark btn-sm"
                            th:href="@{/tournament/{id}(id=${tourn.id})}">
                             <i class="fas fa-edit"></i>Edit
