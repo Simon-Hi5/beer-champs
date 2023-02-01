@@ -81,6 +81,10 @@ public class Tournament {
         this.rounds = rounds;
     }
 
+    public void addRound(Round round){
+        this.rounds.add(round);
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(getId());

@@ -48,9 +48,8 @@ public class TournamentServiceImpl implements TournamentService {
         return tournamentRepository.findAll();
     }
 
-    public List<Round> generateGames(Tournament tournament) {
+    public Round generateGames(Tournament tournament) {
         List<Team> teams = tournament.getTeams();
-        List<Round> rounds = new ArrayList<>();
         List<Game> games = new ArrayList<>();
         for (int i = 0; i < teams.size(); i++) {
             for (int j = i + 1; j < teams.size(); j++) {
@@ -59,7 +58,8 @@ public class TournamentServiceImpl implements TournamentService {
         }
         Round round = new Round();
         round.setGames(games);
-        rounds.add(round);
-        return rounds;
+        tournament.addRound(round);
+        updateTournament(tournament.getId(), tournament);
+        return round;
     }
 }

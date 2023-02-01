@@ -15,7 +15,7 @@ public interface TournamentService {
 
     Tournament findTournament(long tournamentId);
 
-    List<Round> generateGames(Tournament tournament);
+    Round generateGames(Tournament tournament);
 
     List<Tournament> findAllTournaments();
 }
