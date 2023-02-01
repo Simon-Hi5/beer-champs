@@ -77,6 +77,10 @@ public class Tournament {
         return rounds;
     }
 
+    public Round getLastRound(){
+        return this.rounds.get(rounds.size()-1);
+    }
+
     public void setRounds(List<Round> rounds) {
         this.rounds = rounds;
     }

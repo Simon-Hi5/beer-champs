@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Component
 public class TournamentServiceImpl implements TournamentService {
@@ -61,5 +59,33 @@ public class TournamentServiceImpl implements TournamentService {
         tournament.addRound(round);
         updateTournament(tournament.getId(), tournament);
         return round;
+    }
+
+    public List<Team> generateScoreboard(Round round) {
+        List<Team> scoreboard = new ArrayList<>();
+        for (Game game:round.getGames()) {
+            scoreboard.add(game.getWinner());
+        }
+
+        Map<Team, Integer> countMap = new HashMap<>();
+        for (Team team : scoreboard) {
+            countMap.put(team, countMap.getOrDefault(team, 0) + 1);
+        }
+
+        List<Team> orderedScoreBoard = new ArrayList<>(countMap.keySet());
+        orderedScoreBoard.sort((o1, o2) -> countMap.get(o2) - countMap.get(o1));
+
+        return orderedScoreBoard;
+    }
+
+    public void setWinner (Tournament tournament, Game game, Team winner) {
+    List<Game> games = findTournament(tournament.getId()).getLastRound().getGames();
+    for (Game g:games) {
+        if(g.getId() == game.getId()){
+            game.setWinner(winner);
+        }
+    }
+    tournament.getLastRound().setGames(games);
+    updateTournament(tournament.getId(), tournament);
     }
 }
