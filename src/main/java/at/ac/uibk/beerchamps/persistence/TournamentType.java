@@ -6,7 +6,7 @@ public enum TournamentType {
 
     public final String label;
 
-    private TournamentType(String label) {
+    TournamentType(String label) {
         this.label = label;
     }
 

@@ -1,19 +1,17 @@
 package at.ac.uibk.beerchamps.service;
 
 import at.ac.uibk.beerchamps.persistence.Team;
-import at.ac.uibk.beerchamps.persistence.Tournament;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Component
 public interface TeamService {
-    long createTeam(Team team, long tournamentId);
+    void createTeam(Team team, long tournamentId);
 
     long updateTeam(long id, Team team);
 
-    long deleteTeam(long teamId);
+    void deleteTeam(long teamId);
 
     Team findTeam(long teamId);
 

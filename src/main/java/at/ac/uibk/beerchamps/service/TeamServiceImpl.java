@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class TeamServiceImpl implements TeamService  {
+public class TeamServiceImpl implements TeamService {
 
     @Autowired
     private TeamRepository teamRepository;
@@ -19,11 +19,10 @@ public class TeamServiceImpl implements TeamService  {
     @Autowired
     private TournamentService tournamentService;
 
-    public long createTeam(Team team, long tournamentId) {
+    public void createTeam(Team team, long tournamentId) {
         Tournament tournament = tournamentService.findTournament(tournamentId);
         team.setTournament(tournament);
         teamRepository.save(team);
-        return team.getId();
     }
 
     public long updateTeam(long teamId, Team newTeam) {
@@ -32,10 +31,9 @@ public class TeamServiceImpl implements TeamService  {
         return teamId;
     }
 
-    public long deleteTeam(long teamId) {
+    public void deleteTeam(long teamId) {
         Team team = findTeam(teamId);
         teamRepository.delete(team);
-        return teamId;
     }
 
     public Team findTeam(long teamId) {

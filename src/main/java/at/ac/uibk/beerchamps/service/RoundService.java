@@ -1,7 +1,6 @@
 package at.ac.uibk.beerchamps.service;
 
 import at.ac.uibk.beerchamps.persistence.Round;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
