@@ -35,7 +35,6 @@ public class TournamentController {
         Tournament tournament = tournamentService.findTournament(id);
         model.addAttribute("tourn", tournament);
         System.out.println(tournament.getLastRound());
-        Round asdf = tournament.getLastRound();
         return "tournament-round";
     }
 
@@ -58,7 +57,13 @@ public class TournamentController {
         tournamentService.deleteTournament(id);
         return "redirect:/";
     }
-
+    @GetMapping("/tournament/{id}/scoreboard")
+    public String showTournamentScoreboard(@PathVariable("id") Long id, Model model) {
+        Tournament tournament = tournamentService.findTournament(id);
+        Round round = tournament.getLastRound();
+        model.addAttribute("scoreboard", tournamentService.generateScoreboard(round));
+        return "tournament-scoreboard";
+    }
     @GetMapping("/tournament/create")
     public String getCreateTournamentView(Model model) {
         model.addAttribute("newTournament", new Tournament());
