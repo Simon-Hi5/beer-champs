@@ -1,14 +1,12 @@
 package at.ac.uibk.beerchamps.controller;
 
-import at.ac.uibk.beerchamps.persistence.*;
+import at.ac.uibk.beerchamps.persistence.Round;
+import at.ac.uibk.beerchamps.persistence.Tournament;
 import at.ac.uibk.beerchamps.service.TournamentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Arrays;
 
 @Controller
 public class TournamentController {
@@ -27,14 +25,13 @@ public class TournamentController {
     public String startTournament(@PathVariable("id") Long id, Model model) {
         Tournament tournament = tournamentService.findTournament(id);
         tournament = tournamentService.generateGames(tournament);
-        System.out.println(tournament.getRounds().size());
-        return "redirect:/tournament/"+id+"/currentRound";
+        return "redirect:/tournament/" + id + "/currentRound";
     }
+
     @GetMapping("/tournament/{id}/currentRound")
     public String getCurrentRound(@PathVariable("id") Long id, Model model) {
         Tournament tournament = tournamentService.findTournament(id);
         model.addAttribute("tourn", tournament);
-        System.out.println(tournament.getLastRound());
         return "tournament-round";
     }
 
@@ -45,9 +42,9 @@ public class TournamentController {
     }
 
     @PostMapping("/tournament/{id}/game/{game_id}/set-winner")
-    public String handleRoundSave(@PathVariable("id") Long tourn_id, @PathVariable("game_id") Long game_id, @RequestParam("winnerId") Long winnerId, Model model) {
-        Tournament tournament = tournamentService.findTournament(tourn_id);
-        tournamentService.setWinner(tournament, game_id, winnerId);
+    public String handleRoundSave(@PathVariable("id") Long tournId, @PathVariable("game_id") Long gameId, @RequestParam("winnerId") Long winnerId, Model model) {
+        Tournament tournament = tournamentService.findTournament(tournId);
+        tournamentService.setWinner(tournament, gameId, winnerId);
         model.addAttribute("tourn", tournament);
         return "redirect:/tournament/{id}/currentRound";
     }
@@ -57,6 +54,7 @@ public class TournamentController {
         tournamentService.deleteTournament(id);
         return "redirect:/";
     }
+
     @GetMapping("/tournament/{id}/scoreboard")
     public String showTournamentScoreboard(@PathVariable("id") Long id, Model model) {
         Tournament tournament = tournamentService.findTournament(id);
@@ -64,6 +62,7 @@ public class TournamentController {
         model.addAttribute("scoreboard", tournamentService.generateScoreboard(round));
         return "tournament-scoreboard";
     }
+
     @GetMapping("/tournament/create")
     public String getCreateTournamentView(Model model) {
         model.addAttribute("newTournament", new Tournament());

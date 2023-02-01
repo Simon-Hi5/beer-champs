@@ -24,14 +24,6 @@ public class Team {
     @JoinColumn(name = "round_id")
     private Round round;
 
-    public Round getRound() {
-        return round;
-    }
-
-    public void setRound(Round round) {
-        this.round = round;
-    }
-
     public Team() {
     }
 
@@ -39,6 +31,14 @@ public class Team {
         this.players = players;
         this.teamName = teamName;
         this.tournament = tournament;
+    }
+
+    public Round getRound() {
+        return round;
+    }
+
+    public void setRound(Round round) {
+        this.round = round;
     }
 
     public long getId() {

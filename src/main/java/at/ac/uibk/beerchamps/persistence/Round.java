@@ -1,8 +1,8 @@
 package at.ac.uibk.beerchamps.persistence;
 
 import javax.persistence.*;
-import java.util.Objects;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Round {
@@ -11,10 +11,10 @@ public class Round {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToMany(mappedBy="round", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "round", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Team> teams;
 
-    @OneToMany(mappedBy="round", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "round", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Game> games;
 
     @ManyToOne(fetch = FetchType.LAZY)
