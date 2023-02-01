@@ -1,5 +1,6 @@
 package at.ac.uibk.beerchamps.controller;
 
+import at.ac.uibk.beerchamps.persistence.Round;
 import at.ac.uibk.beerchamps.persistence.Tournament;
 import at.ac.uibk.beerchamps.service.TournamentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +24,24 @@ public class TournamentController {
         return "tournament-view";
     }
 
+    @GetMapping("/tournament/{id}/start")
+    public String startTournament(@PathVariable("id") Long id, Model model) {
+        Tournament tournament = tournamentService.findTournament(id);
+        tournament = tournamentService.generateGames(tournament);
+        System.out.println(tournament.getRounds().size());
+        model.addAttribute("tourn", tournament);
+        return "tournament-round";
+    }
+
     @PostMapping("/tournament/{id}")
     public String handleTournamentUpdate(@PathVariable("id") Long id, @ModelAttribute Tournament tournament) {
         tournamentService.updateTournament(id, tournament);
         return "redirect:/";
+    }
+
+    @PostMapping("/tournament/{id}/save-round")
+    public String handleRoundSave(@PathVariable("id") Long id, @ModelAttribute Tournament tournament) {
+        return "tournament-round";
     }
 
     @GetMapping("/tournament/{id}/delete")

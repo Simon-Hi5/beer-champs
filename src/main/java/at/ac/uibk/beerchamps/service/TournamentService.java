@@ -16,7 +16,7 @@ public interface TournamentService {
 
     Tournament findTournament(long tournamentId);
 
-    Round generateGames(Tournament tournament);
+    Tournament generateGames(Tournament tournament);
 
     void setWinner (Tournament tournament, Game game, Team winner);
 

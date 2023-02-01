@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: html_head"></head>
+<body>
+
+<nav th:replace="fragments/nav :: nav"></nav>
+
+<div class="container">
+
+    <div class="text-center"
+         style="background-color: #f2f2f2; margin-top: 20px; border-radius: 10px; padding: 20px 10px;">
+        <h2>Round</h2>
+    </div>
+    <form id="edit-tournament" method="POST" th:action="@{/tournament/{id}/save-round(id=${tourn.getLastRound.id})}">
+        <table class="mt-4 table table-striped">
+            <thead>
+            <tr>
+                <th>Team 1</th>
+                <th>Team 2</th>
+                <th>Select Winner</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="game : ${tourn.getLastRound.games}">
+                <td class="align-middle"><span th:text="${game.team1.teamName}"> Team 1 </span></td>
+                <td class="align-middle"><span th:text="${game.team2.teamName}"> Team 2 </span></td>
+                <td class="align-middle">
+
+                    <form></form>
+                    <select th:id="${game.id}" class="form-control" th:required="true">
+                        <option value="" disabled selected>Select winning team</option>
+                        <option th:text="${game.team1.teamName}"
+                                th:value="${game.team1.id}">
+                        </option>
+                        <option th:text="${game.team2.teamName}"
+                                th:value="${game.team2.id}">
+                        </option>
+                    </select>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary ">Save Changes</button>
+        </div>
+
+    </form>
+
+
+</div>
+</body>
+</html>
