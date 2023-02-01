@@ -33,7 +33,6 @@ public class TournamentController {
     @GetMapping("/tournament/{id}/currentRound")
     public String getCurrentRound(@PathVariable("id") Long id, Model model) {
         Tournament tournament = tournamentService.findTournament(id);
-        tournament = tournamentService.generateGames(tournament);
         model.addAttribute("tourn", tournament);
         System.out.println(tournament.getLastRound());
         Round asdf = tournament.getLastRound();

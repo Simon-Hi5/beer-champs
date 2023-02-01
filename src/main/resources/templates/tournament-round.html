@@ -29,7 +29,6 @@
                         <td class="align-middle"><span th:text="${game.team1.teamName}"> Team 1 </span></td>
                         <td class="align-middle"><span th:text="${game.team2.teamName}"> Team 2 </span></td>
                         <td class="align-middle">
-
                             <select class="form-control" th:required="true" name="winnerId" >
                             <option value="" disabled th:selected="${game.winner == null}">Select winning team</option>
                             <option th:text="${game.team1.teamName}"

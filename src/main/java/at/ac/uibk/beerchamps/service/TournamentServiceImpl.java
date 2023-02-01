@@ -103,6 +103,7 @@ public class TournamentServiceImpl implements TournamentService {
         for (Game g:games) {
             if(g.getId() == game_id){
                 g.setWinner(winner);
+                gameRepository.save(g);
             }
         }
         tournament.getLastRound().setGames(games);
