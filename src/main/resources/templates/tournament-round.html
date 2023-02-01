@@ -11,7 +11,7 @@
          style="background-color: #f2f2f2; margin-top: 20px; border-radius: 10px; padding: 20px 10px;">
         <h2>Round</h2>
     </div>
-    <form id="edit-tournament" method="POST" th:action="@{/tournament/{id}/save-round(id=${tourn.getLastRound.id})}">
+
         <table class="mt-4 table table-striped">
             <thead>
             <tr>
@@ -25,28 +25,27 @@
                 <td class="align-middle"><span th:text="${game.team1.teamName}"> Team 1 </span></td>
                 <td class="align-middle"><span th:text="${game.team2.teamName}"> Team 2 </span></td>
                 <td class="align-middle">
+                    <form id="current-round" method="POST"
+                          th:action="@{/tournament/{id}/game/{game_id}/set-winner(id=${tourn.id}, game_id=${game.id})}">
 
-                    <form></form>
-                    <select th:id="${game.id}" class="form-control" th:required="true">
-                        <option value="" disabled selected>Select winning team</option>
-                        <option th:text="${game.team1.teamName}"
-                                th:value="${game.team1.id}">
-                        </option>
-                        <option th:text="${game.team2.teamName}"
-                                th:value="${game.team2.id}">
-                        </option>
-                    </select>
+                        <select class="form-control" th:required="true" th:object="${game}">
+                            <option value="" disabled selected>Select winning team</option>
+                            <option th:text="${game.team1.teamName}"
+                                    th:value="${game.team1.id}">
+                            </option>
+                            <option th:text="${game.team2.teamName}"
+                                    th:value="${game.team2.id}">
+                            </option>
+                        </select>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary ">Save Changes</button>
+                        </div>
+
+                    </form>
                 </td>
             </tr>
             </tbody>
         </table>
-
-        <div class="text-center">
-            <button type="submit" class="btn btn-primary ">Save Changes</button>
-        </div>
-
-    </form>
-
 
 </div>
 </body>

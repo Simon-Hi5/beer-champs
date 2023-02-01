@@ -1,11 +1,13 @@
 package at.ac.uibk.beerchamps.controller;
 
+import at.ac.uibk.beerchamps.persistence.Game;
 import at.ac.uibk.beerchamps.persistence.Round;
 import at.ac.uibk.beerchamps.persistence.Tournament;
 import at.ac.uibk.beerchamps.service.TournamentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,9 +41,11 @@ public class TournamentController {
         return "redirect:/";
     }
 
-    @PostMapping("/tournament/{id}/save-round")
-    public String handleRoundSave(@PathVariable("id") Long id, @ModelAttribute Tournament tournament) {
-        return "tournament-round";
+    @PostMapping("/tournament/{id}/game/{game_id}/set-winner")
+    public String handleRoundSave(@PathVariable("id") Long tourn_id, @PathVariable("game_id") Long game_id, @ModelAttribute Long id) {
+        System.out.println("ID " + id);
+
+        return "redirect:/rounds";
     }
 
     @GetMapping("/tournament/{id}/delete")
