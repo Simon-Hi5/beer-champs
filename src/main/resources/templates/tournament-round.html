@@ -23,7 +23,7 @@
             </thead>
             <tbody>
             <tr th:each="game : ${tourn.getLastRound.games}">
-                    <form id="current-round" method="POST" th:object="${game}"
+                    <form id="current-round" method="POST"
                           th:action="@{/tournament/{id}/game/{game_id}/set-winner(id=${tourn.id}, game_id=${game.id})}">
 
                         <td class="align-middle"><span th:text="${game.team1.teamName}"> Team 1 </span></td>

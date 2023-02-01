@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 
@@ -50,9 +47,10 @@ public class TournamentController {
     }
 
     @PostMapping("/tournament/{id}/game/{game_id}/set-winner")
-    public String handleRoundSave(@PathVariable("id") Long tourn_id, @PathVariable("game_id") Long game_id, @ModelAttribute Game game) {
+    public String handleRoundSave(@PathVariable("id") Long tourn_id, @PathVariable("game_id") Long game_id, @RequestParam("winnerId") Long winnerId, Model model) {
         Tournament tournament = tournamentService.findTournament(tourn_id);
-        tournamentService.setWinner(tournament, game, game.getWinner());
+        tournamentService.setWinner(tournament, game_id, winnerId);
+        model.addAttribute("tourn", tournament);
         return "redirect:/tournament/{id}/currentRound";
     }
 

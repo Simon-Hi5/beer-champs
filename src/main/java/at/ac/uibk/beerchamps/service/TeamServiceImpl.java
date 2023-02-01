@@ -33,8 +33,8 @@ public class TeamServiceImpl implements TeamService  {
     }
 
     public long deleteTeam(long teamId) {
-        Team tournament = findTeam(teamId);
-        teamRepository.delete(tournament);
+        Team team = findTeam(teamId);
+        teamRepository.delete(team);
         return teamId;
     }
 
