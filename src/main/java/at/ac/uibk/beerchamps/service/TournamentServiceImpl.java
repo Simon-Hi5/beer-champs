@@ -61,7 +61,7 @@ public class TournamentServiceImpl implements TournamentService {
         return round;
     }
 
-    public List<Team> generateScoreboard(Round round){
+    public List<Team> generateScoreboard(Round round) {
         List<Team> scoreboard = new ArrayList<>();
         for (Game game:round.getGames()) {
             scoreboard.add(game.getWinner());
@@ -78,7 +78,7 @@ public class TournamentServiceImpl implements TournamentService {
         return orderedScoreBoard;
     }
 
-    public void setWinner (Tournament tournament, Game game, Team winner){
+    public void setWinner (Tournament tournament, Game game, Team winner) {
     List<Game> games = findTournament(tournament.getId()).getLastRound().getGames();
     for (Game g:games) {
         if(g.getId() == game.getId()){
