@@ -1,6 +1,7 @@
 package at.ac.uibk.beerchamps.persistence;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.List;
@@ -22,7 +23,7 @@ public class Tournament {
     private List<Team> teams;
 
     @OneToMany(mappedBy="tournament", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Round> rounds;
+    private List<Round> rounds = new ArrayList<Round>();
 
     public Tournament() {
     }
