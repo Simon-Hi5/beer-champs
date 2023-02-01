@@ -18,7 +18,7 @@ import javax.persistence.EntityNotFoundException;
 import static org.junit.Assert.assertThrows;
 
 @ExtendWith(MockitoExtension.class)
-public class TournamentServiceTest {
+class TournamentServiceTest {
 
     @Mock
     TournamentRepository tournamentRepository;
