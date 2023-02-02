@@ -100,6 +100,7 @@ public class TournamentServiceImpl implements TournamentService {
             Team winner = team.get();
             for (Game g : games) {
                 if (g.getId() == gameId) {
+                    verifyWinner(g, winner);
                     g.setWinner(winner);
                     gameRepository.save(g);
                 }
@@ -107,5 +108,9 @@ public class TournamentServiceImpl implements TournamentService {
         }
         tournament.getLastRound().setGames(games);
         updateTournament(tournament.getId(), tournament);
+    }
+
+    private void verifyWinner(Game game, Team winner){
+        if(! game.getTeam1().equals(winner) && !game.getTeam2().equals(winner)) throw new RuntimeException("Team does not belong to game!");
     }
 }

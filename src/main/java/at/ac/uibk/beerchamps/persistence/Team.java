@@ -83,10 +83,10 @@ public class Team {
         if (obj == null) {
             return false;
         }
-        if (!(obj instanceof Tournament)) {
+        if (!(obj instanceof Team)) {
             return false;
         }
-        final Tournament other = (Tournament) obj;
+        final Team other = (Team) obj;
         return Objects.equals(getId(), other.getId());
     }
 }
