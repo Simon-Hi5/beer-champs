@@ -77,12 +77,14 @@ public class Tournament {
         return rounds;
     }
 
-    public void setRounds(List<Round> rounds) {
-        this.rounds = rounds;
+    public Round getLastRound(){
+        if(this.rounds.size() == 0)
+            return null;
+        return this.rounds.get(rounds.size()-1);
     }
 
-    public Round getLastRound() {
-        return this.rounds.get(rounds.size() - 1);
+    public void setRounds(List<Round> rounds) {
+        this.rounds = rounds;
     }
 
     public void addRound(Round round) {

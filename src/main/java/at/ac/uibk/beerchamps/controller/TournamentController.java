@@ -62,6 +62,7 @@ public class TournamentController {
     public String showTournamentScoreboard(@PathVariable("id") Long id, Model model) {
         Tournament tournament = tournamentService.findTournament(id);
         Round round = tournament.getLastRound();
+        model.addAttribute("tourn", tournament);
         model.addAttribute("scoreboard", tournamentService.generateScoreboard(round));
         return "tournament-scoreboard";
     }

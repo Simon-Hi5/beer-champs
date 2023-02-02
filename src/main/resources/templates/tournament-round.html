@@ -5,7 +5,7 @@
 
 <nav th:replace="fragments/nav :: nav"></nav>
 
-<div class="container">
+<div class="container" style="max-width: ">
 
     <div class="text-center"
          style="background-color: #f2f2f2; margin-top: 20px; border-radius: 10px; padding: 20px 10px;">
@@ -15,21 +15,22 @@
         <table class="mt-4 table table-striped">
             <thead>
             <tr>
-                <th>Team 1</th>
-                <th>Team 2</th>
-                <th>Select Winner</th>
-                <th></th>
+                <th class="text-center">Team 1</th>
+                <th class="text-center"></th>
+                <th class="text-center">Team 2</th>
+                <th class="text-center">Select Winner</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="game : ${tourn.getLastRound.games}">
-                    <form id="current-round" method="POST"
+                    <form method="POST"
                           th:action="@{/tournament/{id}/game/{game_id}/set-winner(id=${tourn.id}, game_id=${game.id})}">
 
-                        <td class="align-middle"><span th:text="${game.team1.teamName}"> Team 1 </span></td>
-                        <td class="align-middle"><span th:text="${game.team2.teamName}"> Team 2 </span></td>
-                        <td class="align-middle">
-                            <select class="form-control" th:required="true" name="winnerId" >
+                        <td class="align-middle text-center"><span th:text="${game.team1.teamName}"> Team 1 </span></td>
+                        <td class="align-middle text-center versus">vs.</td>
+                        <td class="align-middle text-center"><span th:text="${game.team2.teamName}"> Team 2 </span></td>
+                        <td class="align-middle d-flex justify-content-center">
+                            <select class="form-control" th:required="true" name="winnerId" style="width: fit-content;">
                             <option value="" disabled th:selected="${game.winner == null}">Select winning team</option>
                             <option th:text="${game.team1.teamName}"
                                     th:value="${game.team1.id}" th:selected="${game.winner?.id == game.team1.id}">
@@ -38,9 +39,9 @@
                                     th:value="${game.team2.id}" th:selected="${game.winner?.id == game.team2.id}">
                             </option>
                         </select>
-                        <td>
+                        <td class="td-submit-form" style="display: none">
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary ">Save Changes</button>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
                             </div>
                         </td>
 
@@ -57,5 +58,14 @@
         </a>
         </div>
     </div>
+
+    <script th:src="@{/js/jquery-3.6.3.min.js}"></script>
+    <script>
+        $(document).ready(function(){
+            $("td select").change(function(){
+                $(this).closest("td").siblings(".td-submit-form").find("button[type='submit']").click();
+            });
+        });
+    </script>
 </body>
 </html>
