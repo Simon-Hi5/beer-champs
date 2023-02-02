@@ -16,7 +16,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @WebMvcTest
-public class IndexControllerTest {
+class IndexControllerTest {
     @Autowired
     MockMvc mvc;
 
@@ -33,7 +33,7 @@ public class IndexControllerTest {
     TeamService teamService;
 
     @Test
-    public void testGetIndex() throws Exception {
+    void testGetIndex() throws Exception {
         MvcResult indexPage = mvc.perform(MockMvcRequestBuilders.get("/"))
                 .andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
 

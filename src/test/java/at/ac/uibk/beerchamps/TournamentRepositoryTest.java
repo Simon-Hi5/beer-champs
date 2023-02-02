@@ -9,13 +9,13 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
-public class TournamentRepositoryTest {
+class TournamentRepositoryTest {
 
     @Autowired
     TournamentRepository tournamentRepository;
 
     @Test
-    public void statusRepositoryDeliversStatusByUserAndTask() {
+    void statusRepositoryDeliversStatusByUserAndTask() {
         Tournament tournament = new Tournament();
         tournamentRepository.save(tournament);
         Tournament result = tournamentRepository.findAll().get(0);

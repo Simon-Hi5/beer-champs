@@ -20,7 +20,7 @@ import java.util.Objects;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class TeamTest {
+class TeamTest {
     @Mock
     TournamentRepository tournamentRepository;
     @Mock
@@ -34,7 +34,7 @@ public class TeamTest {
     HashSet<Player> set1,set2;
     Team t1,t2;
     @BeforeEach
-    public void init(){
+    void init(){
         tournamentService.createTournament(newTournament);
 
         p1 = new Player("p1");
@@ -54,20 +54,20 @@ public class TeamTest {
         t2 = new Team(set2,"team2",newTournament);
     }
     @Test
-    public void PlayerCreation(){
+    void PlayerCreation(){
         Assertions.assertEquals("p1",p1.getName());
         Assertions.assertEquals("p2",p2.getName());
         Assertions.assertEquals("p3",p3.getName());
         Assertions.assertEquals("p4",p4.getName());
     }
     @Test
-    public void TeamCreation(){
+    void TeamCreation(){
         Assertions.assertEquals("team1",t1.getTeamName());
         Assertions.assertEquals("team2",t2.getTeamName());
     }
 
     @Test
-    public void TeamSetID(){
+    void TeamSetID(){
         t1.setId(999);
         t2.setId(12234);
 
@@ -75,7 +75,7 @@ public class TeamTest {
         Assertions.assertEquals(12234,t2.getId());
     }
     @Test
-    public void TeamHash(){
+    void TeamHash(){
         t1.setId(999);
         t2.setId(12234);
 

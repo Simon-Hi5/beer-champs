@@ -24,7 +24,7 @@ import java.util.Objects;
 
 @ExtendWith(MockitoExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class GameTest {
+class GameTest {
     @Mock
     TournamentRepository tournamentRepository;
     @Mock
@@ -40,7 +40,7 @@ public class GameTest {
 
     Game g1,g2;
     @BeforeEach
-    public void init(){
+    void init(){
         tournamentService.createTournament(newTournament);
 
         p1 = new Player("p1");
@@ -76,7 +76,7 @@ public class GameTest {
         g2 = new Game();
     }
     @Test
-    public void SetTeams(){
+    void SetTeams(){
         Assertions.assertEquals(null,g1.getTeam1());
 
         g1.setTeam1(t1);
@@ -87,7 +87,7 @@ public class GameTest {
 
     }
     @Test
-    public void SetWinner(){
+    void SetWinner(){
         Assertions.assertEquals(null,g1.getWinner());
 
         g1.setWinner(t2);
@@ -97,7 +97,7 @@ public class GameTest {
     }
 
     @Test
-    public void GameHash(){
+    void GameHash(){
 
         g1.setId(999);
         g2.setId(12234);
