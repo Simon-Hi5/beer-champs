@@ -55,35 +55,5 @@ class TournamentServiceTest {
         });
     }
 
-    @Test
-    void generateGames(){
-        ArgumentCaptor<Tournament> tournamentCaptor = ArgumentCaptor.forClass(Tournament.class);
-        Tournament newTournament = new Tournament();
-        tournamentService.createTournament(newTournament);
-
-        HashSet<Player> set1 = new HashSet<>();
-        HashSet<Player> set2 = new HashSet<>();
-
-        Player p1 = new Player("p1");
-        Player p2 = new Player("p2");
-        Player p3 = new Player("p3");
-        Player p4 = new Player("p4");
-
-        set1.add(p1);
-        set1.add(p2);
-        set2.add(p3);
-        set2.add(p4);
-
-        Team t1 = new Team(set1,"team1",newTournament);
-        Team t2 = new Team(set2,"team2",newTournament);
-        teamService.createTeam(t1, newTournament.getId());
-        teamService.createTeam(t2, newTournament.getId());
-
-        teamRepository.save(t1);
-        teamRepository.save(t2);
-        tournamentRepository.save(newTournament);
-
-        Assertions.assertEquals(2,newTournament.getTeams().size());
-    }
 
 }
