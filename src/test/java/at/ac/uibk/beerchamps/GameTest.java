@@ -76,7 +76,7 @@ class GameTest {
         g2 = new Game();
     }
     @Test
-    void SetTeams(){
+    void setTeamsTest(){
         Assertions.assertEquals(null,g1.getTeam1());
 
         g1.setTeam1(t1);
@@ -87,7 +87,7 @@ class GameTest {
 
     }
     @Test
-    void SetWinner(){
+    void setWinnerTest(){
         Assertions.assertEquals(null,g1.getWinner());
 
         g1.setWinner(t2);
@@ -97,7 +97,7 @@ class GameTest {
     }
 
     @Test
-    void GameHash(){
+    void gameHashTest(){
 
         g1.setId(999);
         g2.setId(12234);

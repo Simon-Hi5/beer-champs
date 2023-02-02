@@ -54,20 +54,20 @@ class TeamTest {
         t2 = new Team(set2,"team2",newTournament);
     }
     @Test
-    void PlayerCreation(){
+    void playerCreationTest(){
         Assertions.assertEquals("p1",p1.getName());
         Assertions.assertEquals("p2",p2.getName());
         Assertions.assertEquals("p3",p3.getName());
         Assertions.assertEquals("p4",p4.getName());
     }
     @Test
-    void TeamCreation(){
+    void teamCreationTest(){
         Assertions.assertEquals("team1",t1.getTeamName());
         Assertions.assertEquals("team2",t2.getTeamName());
     }
 
     @Test
-    void TeamSetID(){
+    void teamSetIdTest(){
         t1.setId(999);
         t2.setId(12234);
 
@@ -75,7 +75,7 @@ class TeamTest {
         Assertions.assertEquals(12234,t2.getId());
     }
     @Test
-    void TeamHash(){
+    void teamHashTest(){
         t1.setId(999);
         t2.setId(12234);
 

@@ -15,7 +15,7 @@ class TournamentRepositoryTest {
     TournamentRepository tournamentRepository;
 
     @Test
-    void statusRepositoryDeliversStatusByUserAndTask() {
+    void tournamentRepositorySaveAndFindTest() {
         Tournament tournament = new Tournament();
         tournamentRepository.save(tournament);
         Tournament result = tournamentRepository.findAll().get(0);
