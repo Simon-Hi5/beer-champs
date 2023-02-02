@@ -36,17 +36,21 @@
                 <td class="align-middle"><span th:text="${tourn.tournamentName}"> Tournament Name </span></td>
                 <td class="align-middle"><span th:text="${tourn.hostName}"> Host Name </span></td>
                 <td class="align-middle"><span th:text="${tourn.tournamentType.getLabel()}"> Tournament Type </span></td>
-                <td class="align-middle">
+                <td class="align-middle d-flex justify-content-center">
                     <div class="btn-toolbar" role="group" aria-label="Basic example">
-                        <a type="button" class="btn btn-success btn-sm" th:if="${!tourn.teams.isEmpty()}"
-                           th:href="@{/tournament/{id}/start(id=${tourn.id})}">
-                            <i class="fas fa-edit"></i>Start
+                        <a type="button" class="btn btn-success btn-sm" th:if="${!tourn.teams.isEmpty() && tourn.rounds.isEmpty()}"
+                           th:href="@{/tournament/{id}/start(id=${tourn.id})}" style="margin-right: 5px">
+                            <i class="fas fa-play"></i>Start
                         </a>
-                        <a type="button" class="btn btn-dark btn-sm"
-                           th:href="@{/tournament/{id}(id=${tourn.id})}">
+                        <a type="button" class="btn btn-success btn-sm" th:if="${!tourn.rounds.isEmpty()}"
+                           th:href="@{/tournament/{id}/currentRound(id=${tourn.id})}" style="margin-right: 5px">
+                            <i class="fas fa-arrow-right"></i>Select
+                        </a>
+                        <a type="button" class="btn btn-dark btn-sm" style="margin-right: 5px"
+                           th:href="@{/tournament/{id}(id=${tourn.id})}" th:if="${tourn.rounds.isEmpty()}">
                             <i class="fas fa-edit"></i>Edit
                         </a>
-                        <a type="button" class="btn btn-danger btn-sm"
+                        <a type="button" class="btn btn-danger btn-sm" style="margin-right: 5px"
                            th:href="@{/tournament/{id}/delete(id=${tourn.id})}">
                             <i class="fas fa-trash"></i>Delete
                         </a>
