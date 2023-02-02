@@ -15,3 +15,6 @@ form .form-group, form .btn.btn-primary{
 form .form-group label{
     font-weight: bold;
 }
+.btn > i.fas{
+    margin-right: 5px;
+}
