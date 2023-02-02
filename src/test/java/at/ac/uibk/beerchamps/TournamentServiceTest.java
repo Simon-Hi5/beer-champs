@@ -3,6 +3,7 @@ package at.ac.uibk.beerchamps;
 import at.ac.uibk.beerchamps.persistence.Team;
 import at.ac.uibk.beerchamps.persistence.Tournament;
 import at.ac.uibk.beerchamps.persistence.TournamentType;
+import at.ac.uibk.beerchamps.repository.TeamRepository;
 import at.ac.uibk.beerchamps.repository.TournamentRepository;
 import at.ac.uibk.beerchamps.service.TeamService;
 import at.ac.uibk.beerchamps.service.TeamServiceImpl;
