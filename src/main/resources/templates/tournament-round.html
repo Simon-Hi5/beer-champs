@@ -5,7 +5,7 @@
 
 <nav th:replace="fragments/nav :: nav"></nav>
 
-<div class="container">
+<div class="container" style="max-width: ">
 
     <div class="text-center"
          style="background-color: #f2f2f2; margin-top: 20px; border-radius: 10px; padding: 20px 10px;">
@@ -15,9 +15,10 @@
         <table class="mt-4 table table-striped">
             <thead>
             <tr>
-                <th>Team 1</th>
-                <th>Team 2</th>
-                <th>Select Winner</th>
+                <th class="text-center">Team 1</th>
+                <th class="text-center"></th>
+                <th class="text-center">Team 2</th>
+                <th class="text-center">Select Winner</th>
             </tr>
             </thead>
             <tbody>
@@ -25,9 +26,10 @@
                     <form method="POST"
                           th:action="@{/tournament/{id}/game/{game_id}/set-winner(id=${tourn.id}, game_id=${game.id})}">
 
-                        <td class="align-middle"><span th:text="${game.team1.teamName}"> Team 1 </span></td>
-                        <td class="align-middle"><span th:text="${game.team2.teamName}"> Team 2 </span></td>
-                        <td class="align-middle">
+                        <td class="align-middle text-center"><span th:text="${game.team1.teamName}"> Team 1 </span></td>
+                        <td class="align-middle text-center versus">vs.</td>
+                        <td class="align-middle text-center"><span th:text="${game.team2.teamName}"> Team 2 </span></td>
+                        <td class="align-middle d-flex justify-content-center">
                             <select class="form-control" th:required="true" name="winnerId" style="width: fit-content;">
                             <option value="" disabled th:selected="${game.winner == null}">Select winning team</option>
                             <option th:text="${game.team1.teamName}"

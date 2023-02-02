@@ -75,7 +75,6 @@ public class TournamentServiceImpl implements TournamentService {
             }
         }
 
-        System.out.println(tournament.getRounds().size());
         updateTournament(tournament.getId(), tournament);
         return tournament;
     }
