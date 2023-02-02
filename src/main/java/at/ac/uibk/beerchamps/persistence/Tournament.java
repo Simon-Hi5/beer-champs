@@ -79,6 +79,8 @@ public class Tournament {
     }
 
     public Round getLastRound(){
+        if(this.rounds.size() == 0)
+            return null;
         return this.rounds.get(rounds.size()-1);
     }
 
