@@ -22,6 +22,7 @@ public class Round {
     private Tournament tournament;
 
     public Round() {
+
     }
 
     public Round(List<Team> teams) {
@@ -58,6 +59,14 @@ public class Round {
 
     public void setTournament(Tournament tournament) {
         this.tournament = tournament;
+    }
+
+    public boolean isFinished(){
+        for(Game g : games){
+            if(g.getWinner() == null)
+                return false;
+        }
+        return true;
     }
 
     @Override

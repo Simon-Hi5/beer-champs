@@ -46,9 +46,9 @@
                 <tr th:each="team : ${tourn.teams}">
                     <td class="align-middle"><span th:text="${team.id}"> ID </span></td>
                     <td class="align-middle"><span th:text="${team.teamName}"> Tournament Name </span></td>
-                    <td class="align-middle">
+                    <td class="align-middle d-flex justify-content-center">
                         <div class="btn-toolbar" role="group" aria-label="Basic example">
-                            <a type="button" class="btn btn-dark btn-sm"
+                            <a type="button" class="btn btn-dark btn-sm" style="margin-right: 5px"
                                th:href="@{/tournament/{id}/team/{teamId}(id=${tourn.id}, teamId=${team.id})}">
                                 <i class="fas fa-edit"></i>Edit
                             </a>
@@ -62,7 +62,7 @@
                 <tr>
                     <td class="align-middle text-center" colspan="3">
                         <a type="button" class="btn btn-dark" th:href="@{/tournament/{id}/team/create(id=${tourn.id})}"
-                           style="margin: auto; max-width: 400px; display: block; margin-top: 20px;">Create new Team</a>
+                           style="margin: auto; max-width: 400px; display: block; margin-top: 20px;" th:if="${tourn.rounds.isEmpty()}">Create new Team</a>
                     </td>
                 </tr>
                 </tbody>

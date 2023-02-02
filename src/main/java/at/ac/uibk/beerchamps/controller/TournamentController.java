@@ -18,7 +18,10 @@ public class TournamentController {
     public String getTournamentView(@PathVariable("id") Long id, Model model) {
         Tournament tournament = tournamentService.findTournament(id);
         model.addAttribute("tourn", tournament);
-        return "tournament-view";
+        String location = "tournament-view";
+        if(tournament.getRounds().size() > 0)
+            location = "tournament-round";
+        return location;
     }
 
     @GetMapping("/tournament/{id}/start")

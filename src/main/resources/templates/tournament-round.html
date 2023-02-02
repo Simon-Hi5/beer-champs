@@ -49,11 +49,13 @@
             </tr>
             </tbody>
         </table>
-        <div class="text-center"><a type="button" class="btn btn-success btn-sm"
+        <div class="text-center">
+            <a type="button" class="btn btn-success btn-sm" th:if="${tourn.getLastRound.isFinished()}"
            th:href="@{/tournament/{id}/scoreboard(id=${tourn.id})}">
             <i class="fas fa-trophy"></i>Go to Scoreboard
-        </div>
+
         </a>
+        </div>
     </div>
 </body>
 </html>
