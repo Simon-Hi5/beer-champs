@@ -1,10 +1,8 @@
 package at.ac.uibk.beerchamps.service;
 
 import at.ac.uibk.beerchamps.persistence.Round;
-import at.ac.uibk.beerchamps.persistence.Team;
 import at.ac.uibk.beerchamps.persistence.Tournament;
 import at.ac.uibk.beerchamps.repository.RoundRepository;
-import at.ac.uibk.beerchamps.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class RoundServiceImpl implements RoundService{
+public class RoundServiceImpl implements RoundService {
 
     @Autowired
     private RoundRepository roundRepository;

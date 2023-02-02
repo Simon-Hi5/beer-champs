@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.List;
 
 @Entity
 public class Tournament {
@@ -19,11 +18,11 @@ public class Tournament {
 
     private TournamentType tournamentType;
 
-    @OneToMany(mappedBy="tournament", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "tournament", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Team> teams;
 
-    @OneToMany(mappedBy="tournament", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Round> rounds = new ArrayList<Round>();
+    @OneToMany(mappedBy = "tournament", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Round> rounds = new ArrayList<>();
 
     public Tournament() {
     }
@@ -88,7 +87,11 @@ public class Tournament {
         this.rounds = rounds;
     }
 
-    public void addRound(Round round){
+    public Round getLastRound() {
+        return this.rounds.get(rounds.size() - 1);
+    }
+
+    public void addRound(Round round) {
         this.rounds.add(round);
     }
 

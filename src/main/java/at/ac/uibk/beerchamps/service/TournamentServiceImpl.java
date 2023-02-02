@@ -29,21 +29,18 @@ public class TournamentServiceImpl implements TournamentService {
     @Autowired
     private TeamRepository teamRepository;
 
-    public long createTournament(Tournament tournament) {
+    public void createTournament(Tournament tournament) {
         tournamentRepository.save(tournament);
-        return tournament.getId();
     }
 
-    public long updateTournament(long tournamentId, Tournament newTournament) {
+    public void updateTournament(long tournamentId, Tournament newTournament) {
         findTournament(tournamentId);
         tournamentRepository.save(newTournament);
-        return tournamentId;
     }
 
-    public long deleteTournament(long tournamentId) {
+    public void deleteTournament(long tournamentId) {
         Tournament tournament = findTournament(tournamentId);
         tournamentRepository.delete(tournament);
-        return tournamentId;
     }
 
     public Tournament findTournament(long tournamentId) {
@@ -81,7 +78,7 @@ public class TournamentServiceImpl implements TournamentService {
 
     public List<Team> generateScoreboard(Round round) {
         List<Team> scoreboard = new ArrayList<>();
-        for (Game game:round.getGames()) {
+        for (Game game : round.getGames()) {
             scoreboard.add(game.getWinner());
         }
 
@@ -96,13 +93,16 @@ public class TournamentServiceImpl implements TournamentService {
         return orderedScoreBoard;
     }
 
-    public void setWinner (Tournament tournament, long game_id, long winnerId) {
+    public void setWinner(Tournament tournament, long gameId, long winnerId) {
         List<Game> games = findTournament(tournament.getId()).getLastRound().getGames();
-        Team winner = teamRepository.findById(winnerId).get();
-        for (Game g:games) {
-            if(g.getId() == game_id){
-                g.setWinner(winner);
-                gameRepository.save(g);
+        Optional<Team> team = teamRepository.findById(winnerId);
+        if (team.isPresent()) {
+            Team winner = team.get();
+            for (Game g : games) {
+                if (g.getId() == gameId) {
+                    g.setWinner(winner);
+                    gameRepository.save(g);
+                }
             }
         }
         tournament.getLastRound().setGames(games);
