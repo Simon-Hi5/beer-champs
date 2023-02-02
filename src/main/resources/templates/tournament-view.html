@@ -34,7 +34,6 @@
             <table class="mt-4 table table-striped">
                 <thead>
                 <tr>
-                    <th>Team ID</th>
                     <th>Team Name</th>
                     <th></th>
                 </tr>
@@ -44,7 +43,6 @@
                     <td class="align-middle text-center" colspan="3">No teams have been created yet.</td>
                 </tr>
                 <tr th:each="team : ${tourn.teams}">
-                    <td class="align-middle"><span th:text="${team.id}"> ID </span></td>
                     <td class="align-middle"><span th:text="${team.teamName}"> Tournament Name </span></td>
                     <td class="align-middle d-flex justify-content-center">
                         <div class="btn-toolbar" role="group" aria-label="Basic example">

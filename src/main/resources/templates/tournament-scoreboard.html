@@ -8,7 +8,7 @@
 <div class="container">
     <div class="text-center"
          style="background-color: #f2f2f2; margin-top: 20px; border-radius: 10px; padding: 20px 10px;">
-        <h2>Winner</h2>
+        <h2>Leaderboard</h2>
     </div>
     <table class="mt-4 table table-striped">
         <thead>
@@ -19,7 +19,12 @@
         </thead>
         <tbody>
         <tr th:each="win, index : ${scoreboard}">
-            <td class="align-middle"><span th:text="${index.count}"></span></td>
+            <td class="align-middle">
+                <i th:if="${index.count} == 1" class="fas fa-trophy fs-1" style="color: #B8860B"></i>
+                <i th:if="${index.count} == 2" class="fas fa-trophy fs-3" style="color: #A9A9A9"></i>
+                <i th:if="${index.count} == 3" class="fas fa-trophy fs-5" style="color: #8B5742"></i>
+                <span th:text="${index.count}"></span>
+            </td>
             <td class="align-middle"><span th:text="${win.teamName}"></span></td>
         </tr>
         </tbody>

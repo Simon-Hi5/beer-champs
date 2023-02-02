@@ -5,7 +5,7 @@
 
 <nav th:replace="fragments/nav :: nav"></nav>
 
-<div class="container">
+<div class="container-sm">
     <div class="text-center"
          style="background-color: #f2f2f2; margin-top: 20px; border-radius: 10px; padding: 20px 10px;">
         <h2>Create new Tournament</h2>
@@ -15,7 +15,7 @@
         <div class="form-group">
             <label for="tournamentName">Tournament Name</label>
             <input type="text" class="form-control" id="tournamentName" th:field="*{tournamentName}"
-                   th:required="required">
+                   th:required="required" autofocus>
         </div>
         <div class="form-group">
             <label for="tournamentType">Tournament Type</label>
@@ -31,6 +31,26 @@
         <div class="text-center">
             <button type="submit" class="btn btn-primary ">Create Tournament</button>
         </div>
+
+        <script>
+            function checkForm() {
+                var inputs = document.querySelectorAll("#create-tournament input");
+                for (var i = 0; i < inputs.length; i++) {
+                    if (!inputs[i].value) {
+                        document.querySelector("#create-tournament button").disabled = true;
+                        return;
+                    }
+                }
+                document.querySelector("#create-tournament button").disabled = false;
+            }
+
+            var inputs = document.querySelectorAll("#create-tournament input");
+            for (var i = 0; i < inputs.length; i++) {
+                inputs[i].addEventListener("input", checkForm);
+            }
+            checkForm();
+        </script>
+
     </form>
 
 </div>
