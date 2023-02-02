@@ -4,6 +4,8 @@ import at.ac.uibk.beerchamps.persistence.Team;
 import at.ac.uibk.beerchamps.persistence.Tournament;
 import at.ac.uibk.beerchamps.persistence.TournamentType;
 import at.ac.uibk.beerchamps.repository.TournamentRepository;
+import at.ac.uibk.beerchamps.service.TeamService;
+import at.ac.uibk.beerchamps.service.TeamServiceImpl;
 import at.ac.uibk.beerchamps.service.TournamentService;
 import at.ac.uibk.beerchamps.service.TournamentServiceImpl;
 import org.junit.jupiter.api.Assertions;
@@ -19,6 +21,10 @@ import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import static org.junit.Assert.assertThrows;
 
 @ExtendWith(MockitoExtension.class)
@@ -26,10 +32,14 @@ class TournamentServiceTest {
 
     @Mock
     TournamentRepository tournamentRepository;
+    @Mock
+    TeamRepository teamRepository;
 
     @InjectMocks
     TournamentService tournamentService = new TournamentServiceImpl();
 
+    @InjectMocks
+    TeamService teamService = new TeamServiceImpl();
     @Test
     void createTournament() {
         ArgumentCaptor<Tournament> tournamentCaptor = ArgumentCaptor.forClass(Tournament.class);

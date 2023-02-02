@@ -79,10 +79,10 @@ public class Game {
         if (obj == null) {
             return false;
         }
-        if (!(obj instanceof Tournament)) {
+        if (!(obj instanceof Game)) {
             return false;
         }
-        final Tournament other = (Tournament) obj;
+        final Game other = (Game) obj;
         return Objects.equals(getId(), other.getId());
     }
 }
